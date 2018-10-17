@@ -1,0 +1,12 @@
+*PENDIENTES*
+-agregar el icono en la pestaña 
+-agregar las imagenes a catalogo 
+-cambiar el diseño de sicaho al de irving
+-agregar acronimo a programa educativo 
+-en profesor la clave debe ser unica 
+-poner el username como unique en la migracion de users
+-aplicar onDelete('cascade') a las tablas de asignacion hora y ah actividad_extra_ch
+*LO QUE CAMBIE*
+-cambie la migración de carga_horaria para agregar las horas totale y disponibles
+
+

@@ -1,0 +1,449 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    background-color: white;
+    min-height: 100%;
+    flex-wrap:wrap;
+    padding-bottom: 40px;
+}
+h1,h2,h3,h4,h5,h6{
+    color: #2C3E50;
+}
+
+#barraNavegacion {
+    background-color: #06A987;
+-webkit-box-shadow: 2px 9px 5px -5px rgba(0,0,0,0.75);
+-moz-box-shadow: 2px 9px 5px -5px rgba(0,0,0,0.75);
+box-shadow: 2px 9px 5px -5px rgba(0,0,0,0.75);
+}
+
+/*Estilo para el brand de la barra de navegación*/
+#logoSicaho {
+    width: 100px;
+    height: 70px;
+
+}
+
+/*inicio--Estilo de los botones de navegación*/
+.nav-link {
+    color: white;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.nav-link:hover {
+    cursor: pointer;
+    background-color: #2C3E50;
+    color: white;
+    border-radius: 5px;
+}
+.nav-link:active {
+    cursor: pointer;
+    background-color: #2C3E50;
+    color: white;
+    border-radius: 5px;
+}
+
+.active {
+    background-color: #2C3E50;
+    color: white;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+.drpUser{
+    background-color:#2C3E50;
+    border-color:#2C3E50;
+    border-radius: 5px;
+    width: 150px;
+    height: 40px;
+    font-family: 'roboto', sans-serif;
+    color: white;
+}
+#seccionUser{
+    margin-right: 25px;
+}
+.fa-user-circle-o{
+    color: white;
+}
+/* fin--Estilo de los botones de navegación*/
+/*inicio--Estilo para boton de buscar*/
+#btnBuscar{
+    border-color: #06A987;
+    color: black;
+    background-color: white;
+    width: 85px;
+    height: 40px;
+    border-radius: 5px;
+}
+#btnBuscar:hover{
+    cursor: pointer;
+    background-color:#06A987; 
+    color: white;
+        }
+/* fin--Estilo para boton de buscar*/
+/*Estilo para el boton collapse*/
+#btnCollapse{
+    color: #2C3E50;
+}
+/*inicio--Estilo para la sección de busqueda y gestión*/
+#seccionGestion{
+    margin-top: 110px;
+}
+.section_botones{
+    margin-left: 190px;
+    margin-top: 5px;
+}
+#seccionTabla{
+    margin-top: 20px;
+}
+.thead-tabla{
+    background-color:#2C3E50;
+}
+table{
+    border-radius: 5px;
+}
+th{
+    color: white;
+}
+.linkNone{
+    text-decoration: none;
+    color: white;
+}
+.linkNone:hover{
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    
+}
+.textVerperfil{
+    margin-top: 15px;
+    margin-left: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+/*fin--Estilo para la sección de busqueda y gestión*/
+
+/*inicio--Estilo de footer
+*/
+footer{
+    align-self: flex-end;
+    line-height: 3;
+    text-align: center;
+    width: 100%;
+    background-color: #2C3E50;
+    bottom: 0;
+    position: absolute;
+    margin-top: 50px;
+}
+/*fin--Estilo de footer*/
+/*inicio--Estilo de Modal nuevo profesor*/
+#txtClaveNuevoProfesor{
+    margin-left: 65px;
+    margin-top: 5px;
+}
+#txtNombreNuevoProfesor{
+    margin-left: 46px;
+    margin-top:5px;
+}
+#txtPerfilNuevoProfesor{
+    margin-left: 69px;
+    margin-top:5px;
+}
+#cmbTipoNuevoProfesor{
+    margin-left: 10px;
+    margin-top:5px;
+}
+/*fin--Estilo de Modal nuevo profesor*/
+/*inicio--Estilo de modal nueva carrera*/
+#txtNuevoNombreProgramaEducativo{
+    margin-top: 5px;
+    margin-left: 20px;
+}
+#txtNombreNuevoAcronimo{
+    margin-top: 5px;
+    margin-left: 83px;
+}
+#chbNuevoEstado{
+    margin-top: 5px;
+    margin-left: 104px;
+    width: 20px;
+    height: 20px;
+}
+/*fin--Estilo de modal nueva carrera*/
+
+/*inicio--estilo modal actualizar carrera*/
+#txtProgramaEducativo{
+    margin-top: 5px;
+    margin-left: 20px;
+}
+#txtAcronimo{
+    margin-top: 5px;
+    margin-left: 83px;
+}
+#chbEstado{
+    margin-top: 5px;
+    margin-left: 104px;
+    width: 20px;
+    height: 20px;
+}
+/*fin--Estilo de modal actualizar carrera */
+
+/*inicio--estilo modal nuevo usuario*/
+#txtNuevoNombreUsuario{
+    margin-top: 5px;
+    margin-left: 40px;
+}
+#txtNuevoPasswordUsuario{
+    margin-top: 5px;
+    margin-left: 72px;
+}
+#cmdNuevoRolUsuario{
+    margin-top: 5px;
+    margin-left: 130px;
+}
+/*fin--Estilo de modal nuevo usuario */
+
+/*inicio--estilo modal actualizar usuario*/
+#txtNombreUsuario{
+    margin-top: 5px;
+    margin-left: 40px;
+}
+#txtPasswordUsuario{
+    margin-top: 5px;
+    margin-left: 72px;
+}
+#cmdRolUsuario{
+    margin-top: 5px;
+    margin-left: 130px;
+}
+/*fin--Estilo de modal actualizar usuario */   
+
+/*inicio-estilo de imagenes catalogo*/
+
+.containerImg {
+  position: relative;
+  width: 100%;
+}
+
+.imageImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.overlayImg {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 93, 72, 0.6);
+  background: rgba(0, 93, 72, 0.6);
+  color: rgba(0, 93, 72, 0.6);
+  overflow: hidden;
+  width: 100%;
+  height:0;
+  transition: .5s ease;
+}
+
+.containerImg:hover .overlayImg {
+  bottom: 0;
+  height: 100%;
+  -moz-box-shadow:7px 7px 5px #112;
+-webkit-box-shadow:7px 7px 5px #112;
+box-shadow:7px 7px 5px #112;
+}
+
+.textImg {
+    text-shadow:5px 5px 5px rgba(6, 169, 135, 1);
+  white-space: nowrap; 
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+   
+.textVerperfil {
+  text-decoration: none;
+  text-shadow:5px 5px 5px rgba(6, 169, 135, 1);
+  color: white;
+  font-size: 20px;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+/*fin-estilo de imagenes catalogo*/
+
+.card-header{
+  background-color: #06a987;
+  border-radius: 5px;
+}
+.btn-link{
+  text-decoration: none;
+  color: White;
+}
+.btn-link:hover{
+  text-decoration: none;
+  color: White;
+}
+.btn-link:active{
+  text-decoration: none;
+  color: White;
+}
+/*inicio-estilo para la seccion de perfil profesor*/
+#container-perfilProfesor{
+    margin-top: 140px;
+}
+#seccionAgregarHoras{
+    margin-bottom: 10px;
+}
+.fa-plus-circle{
+    color: white;
+}
+#seccionMateriasProfesor{
+    margin-top:15px;
+}
+#seccionActividadesProfesor{
+    margin-top:15px;
+}
+#seccionMateriasProfesor h2{
+    margin-top:15px;
+    color: #2C3E50;
+}
+#seccionActividadesProfesor h2{
+    margin-top:15px;
+    color:#2C3E50; 
+}
+#btnNuevoProfesorModal{
+    margin: 5px;
+}
+/*fin-estilo para la seccion de perfil profesor*/
+/*inicio-estilo de imagenes catalogo*/
+
+.containerImg {
+  position: relative;
+  width: 100%;
+}
+
+.imageImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.overlayImg {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 93, 72, 0.6);
+  background: rgba(0, 93, 72, 0.6);
+  color: rgba(0, 93, 72, 0.6);
+  overflow: hidden;
+  width: 100%;
+  height:0;
+  transition: .5s ease;
+}
+
+.containerImg:hover .overlayImg {
+  bottom: 0;
+  height: 100%;
+  -moz-box-shadow:7px 7px 5px #112;
+-webkit-box-shadow:7px 7px 5px #112;
+box-shadow:7px 7px 5px #112;
+}
+
+.texTituloCar{
+  text-align: center;
+}
+
+.textImg {
+    text-shadow:5px 5px 5px rgba(6, 169, 135, 1);
+  white-space: nowrap; 
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.textImgTitulo {
+    text-shadow:5px 5px 5px rgba(6, 169, 135, 1);
+    color: white;
+    font-size: 15px;
+    position: absolute;
+    overflow: hidden;
+    top: 10%;
+    width: 80%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+  
+.textImgPTC {
+    text-shadow:5px 5px 5px rgba(6, 169, 135, 1);
+    text-align: center;
+    width: 90%;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  overflow: hidden;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+
+.textVerperfil {
+  text-decoration: none;
+  text-shadow:5px 5px 5px rgba(6, 169, 135, 1);
+  color: white;
+  font-size: 20px;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+/*fin-estilo de imagenes catalogo*/
+
+/*fin-estilo de Tablas para carga horaria*/
+.card-header{
+  background-color: #06a987;
+  border-radius: 5px;
+}
+.btn-link{
+  text-decoration: none;
+  color: White;
+}
+.btn-link:hover{
+  text-decoration: none;
+  color: White;
+}
+.btn-link:active{
+  text-decoration: none;
+  color: White;
+}
+
+.carMargin{
+  margin: 5px;
+}
+.carCatalogos{
+  height: 60px;
+}
+
+
+.TituloCarrerasPagina{
+  text-align: center;
+  color: #2C3E50;
+}
+/*fin-estilo de Tablas para carga horaria*/

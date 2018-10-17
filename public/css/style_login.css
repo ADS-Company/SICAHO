@@ -1,0 +1,63 @@
+    body{
+    margin: 0;
+    padding: 0;
+        background: url('/images/uttecam.png');
+    background-size: cover;
+    /*background-color: #0BAF94;
+    background-position:center;*/
+    font-family: sans-serif;  
+}
+/*Estilo de los label*/
+#labelText{
+    color: black;
+        }
+/*Estilo del titulo uttecam*/
+#titulo{
+    text-align: center;
+    font-family:monospace;
+    color: white;
+    font-size: 100px;
+        }
+/*Estilo del formulario*/
+.login_box{
+    box-sizing: border-box;
+    border-radius: 5%;
+    -webkit-box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.75);
+}
+.card-header{
+   text-align: center;
+    background-color:#2C3E50;
+    color: white;
+    border-radius: 3px;
+}
+/*Estilo de los cuadros de texto*/
+.form-group{
+    margin: 10px;
+        }
+#btnIngresar{
+    border-color: #047151;
+    color: white;
+    background-color: #047151;
+    border-radius: 5px;
+        }
+#btnIngresar:hover{
+    cursor: pointer;
+    border-color: #2C3E50;
+    background-color:#2C3E50; 
+    color: white;
+        }
+/*Estilo de la imagen*/
+.avatar{
+    width: 170px;
+    height: 170px;
+    border-radius: 120%;
+    position: fixed;
+    top: -95px;
+    left: 130px;
+    align-content: center;
+    -webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);
+}

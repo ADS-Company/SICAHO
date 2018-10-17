@@ -1,0 +1,10 @@
+#seccionBienvenida{
+    margin-top: 110px;
+}
+.card-header{
+    background-color: #2C3E50;
+    color: white;
+}
+.card{
+    border-color:#2C3E50;
+}
