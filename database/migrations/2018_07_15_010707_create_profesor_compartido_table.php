@@ -15,7 +15,12 @@ class CreateProfesorCompartidoTable extends Migration
     {
         Schema::create('profesor_compartido', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id')->unsigned()->nullable()->nullable();
+            $table->increments('id')->unsigned()->nullable();
+            $table->string('nombre');
+            $table->string('clave');
+            $table->string('apellidoPaterno');
+            $table->string('apellidoMaterno');
+            $table->string('tipoProfesor');
             $table->timestamps();
         });
     }

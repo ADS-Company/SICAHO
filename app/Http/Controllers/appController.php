@@ -38,4 +38,8 @@ class appController extends Controller
      public function usuarios(){
         return view('modulos.usuarios.main');
     }
+    //muestra la vista de la página de los profesores compartidos
+    public function profesoresCompartidos(){
+        return view('modulos.profesoresCompartidos.main');
+    }
 }
