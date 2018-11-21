@@ -38,6 +38,17 @@ class crudAsignaturas extends Controller
 	    //dd($materias);
 	    return view('modulos.asignaturas.main',compact('materias','consulta','programasEducativos'));
   	}
+  	public function indexD(){
+		 $programasEducativos=Programa_educativo::orderBy('nombreProgramaEducativo','asc')->pluck('nombreProgramaEducativo','id');
+		$consulta = DB::table('carga_horaria')
+		->join('profesor','profesor.id','=','carga_horaria.id_profesor')
+		->join('programa_educativo','programa_educativo.id','=','carga_horaria.id_programa_educativo')
+		->get();
+
+	    $materias = Asignatura::paginate(10);
+	    //dd($materias);
+	    return view('perfilDirector.asignaturas.main',compact('materias','consulta','programasEducativos'));
+  	}
 
   	//Metodo para mostrar los datos en el select especialidad del modal nuevaAsignatura
   	public function especialidades(){

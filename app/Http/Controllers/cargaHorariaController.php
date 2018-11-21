@@ -15,6 +15,9 @@ use App\Programa_educativo;
 use App\Asignatura_cuatrimestre;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\LoginRequest;
+
 
 class cargaHorariaController extends Controller
 {
@@ -58,5 +61,26 @@ class cargaHorariaController extends Controller
        
 
     	return view('modulos.cargaHoraria.main', compact('car','tics','meca','mantenimiento','industrial','alimetos','conta','negocios','gestionEnpresarial','agricultura','cargaHorariaTics','cargaHorariaMeca','cargaHorariaIndustrial','cargaHorariaMentenimiento','cargaHorariaAlimentos','cargaHorariaConta','cargaHorariaNegocios','cargaHorariaGestionE','cargaHorariaAgricultura'));
+    }
+    public function indexD(){
+        $carrera=Auth::user()->estado;
+        //dd($carrera);
+        switch ($carrera) {
+            case 'TIC':
+                $tics=Programa_educativo::where('nombreProgramaEducativo','Tecnologías de la Información y Comunicación')->first();
+                $cargahoraria= $tics->cargashorarias()->get();
+                $profesor=$cargahoraria;
+                //dd($profesor);
+                break;
+            case 'MECATRÓNICA':
+                $meca=Programa_educativo::where('nombreProgramaEducativo','Mecatrónica')->first();
+                $cargahoraria= $meca->cargashorarias()->get();
+                $profesor=$cargahoraria;
+                break;
+            default:
+                # code...
+                break;
+        }
+        return view('perfilDirector.cargaHoraria.main', compact('carrera','profesor'));
     }
 }

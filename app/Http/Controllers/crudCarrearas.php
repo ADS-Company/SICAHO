@@ -89,4 +89,17 @@ class crudCarrearas extends Controller
           return back()->with('errors','Los datos no han sido guardados correctamente, por favor intente de nuevo.');  
         }
     }
+
+    public function indexD(){
+        $pEducativo = Programa_educativo::all();    
+        $selectedPro = Programa_educativo::first()->id;    
+
+        $espe = Especialidad::get();
+        //dd($espe);
+        $carrera = DB::table('especialidad')->orderBy('id', 'Desc')->paginate(10);
+
+        $carreras = DB::table('especialidad')->join('Programa_educativo','Programa_educativo.id', '=', 'especialidad.id_programa_educativo')->select('especialidad.id','especialidad.created_at','especialidad.nombreEspecialidad','especialidad.acronimo','especialidad.id_programa_educativo','nombreProgramaEducativo')->orderBy('id', 'Desc')->paginate(10);
+        //dd($carreras);
+        return view('perfilDirector.carreras.main',compact('carrera','carreras','pEducativo','selectedPro','espe'));
+    }
 }

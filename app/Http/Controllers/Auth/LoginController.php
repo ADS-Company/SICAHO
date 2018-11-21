@@ -16,7 +16,16 @@ class LoginController extends Controller
     //Verifica si las credenciales son correctas para poder logearlo
         if(Auth::attempt($credentials)){
             //redirecciona si es que se logeo 
-         return redirect('/inicio');
+            //$todo=$request->user();
+            //dd($todo);
+            $usuario=Auth::user()->rol;
+            if ($usuario=="Director") {
+                //dd("Director: ". $usuario);
+                return redirect('/inicioD'); 
+            }else{
+                //dd("Administrador: ". $usuario);
+                return redirect('/inicio'); 
+            }
         }else{
         return back()->withErrors([
             //retorna a la página de inicio para indicar el error

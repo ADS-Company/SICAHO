@@ -12,7 +12,7 @@
 */
 //ruta para obtener la vista de login
 Route::get('/', 'appController@welcome');
-//ruta para obtener la vista de bienvenido
+//ruta para obtener la vista de bienvenido 
 Route::get('/inicio','appController@main')->middleware('auth');
 //ruta para obtener la vista de  la carga horaria
 Route::get('/cargaHoraria','appController@cargaHoraria')->middleware('auth');
@@ -121,6 +121,45 @@ Route::get('catalogos', 'catalogoController@index');
 Route::get('/verCarrera/{id}', 'catalogoController@verCarrera')->name('verCarrera');
 //////////////////// FIN DE LAS RUTAS DEL MODULO DE CATALOGOS////////////////////////////////////////////////////////
 
+//ruta para obtener la vista de Director
+Route::get('/inicioD','appController@mainD')->middleware('auth');
+//ruta para obtener la vista de  la carga horaria
+//Route::get('/cargaHorariaD','appController@cargaHorariaD')->middleware('auth');
+Route::get('/cargaHorariaD', 'cargaHorariaController@indexD');
+//ruta para obtener la vista de asignaturas
+Route::get('/asignaturasD','appController@asignaturasD')->middleware('auth');
+//Ruta para mostrar tabla de asignaturas
+Route::get('/asignaturasD', 'crudAsignaturas@indexD')->middleware('auth');
+//TODOS ROUTES QUE TRAERÁ POR POST PARA PROFESOR
+//ruta para obtener la vista de profesores
+Route::get('/profesoresD','ProfesorController@indexD')->middleware('auth');
+//ruta para redirigir al perfil de profesor pasando el objeto profesor
+Route::get('/profesorD/{profesor}/','ProfesorController@mostrarPrefilD')->middleware('auth');
+//Ruta post que recibe el formulario de nuevo profesor
+Route::post('/nuevoProfesorD','ProfesorController@nuevoProfesorD')->name('nuevoProfesorD');
+//ruta post que recibe el id para eliminar a un profesor 
+Route::post('/eliminarProfesor','ProfesorController@eliminarProfesor')->name('eliminarProfesor');
+//ruta post que recibe el id para actualizar a un profesor
+Route::post('/actualizarProfesor','ProfesorController@actualizarProfesor')->name('actualizarProfesor');
+//TODOS ROUTES QUE TRAERÁ POR POST PARA CARGA HORARIA
+Route::post('/agregarHoras','Carga_horariaController@agregarHoras')->name('agregarHoras');
+//método para agregar la asinacion de materias a un profesor
+Route::post('/agregarAsignacionAsignatura','Carga_HorariaController@agregarAsignacionAsignatura')->name('agregarAsignacionAsignatura');
+//post para eliminar la asignación de horas 
+Route::post('/eliminarAsignacionAsignatura','Carga_HorariaController@eliminarAsignacionAsignatura')->name('eliminarAsignacionAsignatura');
+//post para agregar las actvidades extra de un profesor
+Route::post('/agregarActividadesExtra','Carga_HorariaController@agregarActividadesExtra')->name('agregarActividadesExtra');
+//post para eliminar las actvidades extra de un profesor
+Route::post('/eliminarActividadExtra','Carga_HorariaController@eliminarActividadExtra')->name('eliminarActividadExtra');
+//post para eliminar la carga horaria de un profesor
+Route::post('/eliminarCargaHoraria','Carga_HorariaController@eliminarCargaHoraria')->name('eliminarCargaHoraria');
 
+/*RUTA PARA LOS MODULOS DE PROFESORES*/
+//Route::get('/especialidadesD','crudCarreras@indexD')->middleware('auth');
+Route::get('/carrerasD', 'crudCarrearas@indexD')->middleware('auth');
+//ruta para obtener la vista de catalogos
+Route::get('/catalogosD','appController@catalogosD')->middleware('auth');
+//ruta para obtener la vista de usuarios
+Route::get('/usuariosD','UsuarioController@index')->middleware('auth');
 
 Auth::routes();

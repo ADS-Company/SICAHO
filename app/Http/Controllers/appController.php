@@ -10,8 +10,7 @@ class appController extends Controller
     public function welcome(){
     
     return view('login');
-    }
-    //muestra la vista de la página principal
+    } //muestra la vista de la página principal
     public function main(){
         return view('bienvenido');
     }//muestra la vista de la página carga horaria
@@ -38,4 +37,38 @@ class appController extends Controller
      public function usuarios(){
         return view('modulos.usuarios.main');
     }
+
+    //--------------------------------------------------//
+    //--------------------------------------------------//
+    //--------------------------------------------------//
+
+    //muestra la vista de la página del Director
+    public function mainD(){
+        return view('bienvenidoDirector');
+    }//muestra la vista de la página carga horaria
+     public function cargaHorariaD(){
+        return view('perfilDirector.cargaHoraria.main');
+    }
+    //muestra la vista de la página asignaturas
+     public function asignaturasD(){
+        return view('perfilDirector.asignaturas.main');
+    }
+    //muestra la vista de la página profesores
+     public function profesoresD(){
+        return view('perfilDirector.profesores.main');
+    }
+    //muestra la vista de la página carreras
+     //public function especialidadesD(){
+        //return view('perfilDirector.carreras.main');
+    //}
+    //muestra la vista de la página catalogos
+     public function catalogosD(){
+        return view('perfilDirector.profesoresCompartidos.main');
+    }
+    //muestra la vista de la página usuarios
+     public function usuariosD(){
+        return view('perfilDirector.usuarios.main');
+    }
+    
+
 }
