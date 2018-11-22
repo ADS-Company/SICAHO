@@ -35,7 +35,7 @@ Route::get('/json-cuatrimestres','ProgramaEducativoController@getCuatrimestres')
 //ruta para obtener los cuatrimestres de acuerdo con su especialdad 
 Route::get('/json-asignaturas','ProgramaEducativoController@getAsignaturas');
 //Ruta para obtenerla vista de profesores compartidos
-Route::get('/profesores_compartidos','appController@profesoresCompartidos');
+Route::get('/profesores_compartidos','ProfesorCompartidoController@index');
 
 //TODOS ROUTES QUE TRAERÁ POR POST PARA LOGIN
 //Ruta post que recibe el formulario de login
