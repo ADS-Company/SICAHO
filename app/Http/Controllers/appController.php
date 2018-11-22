@@ -37,6 +37,7 @@ class appController extends Controller
      public function usuarios(){
         return view('modulos.usuarios.main');
     }
+<<<<<<< HEAD
 
     //--------------------------------------------------//
     //--------------------------------------------------//
@@ -71,4 +72,10 @@ class appController extends Controller
     }
     
 
+=======
+    //muestra la vista de la página de los profesores compartidos
+    public function profesoresCompartidos(){
+        return view('modulos.profesoresCompartidos.main');
+    }
+>>>>>>> 29a2ce7c44ad5403b45be2a426d6a635468df255
 }

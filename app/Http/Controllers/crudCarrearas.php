@@ -14,7 +14,7 @@ class crudCarrearas extends Controller
     //Metodo para mostrar los datos de las especialidades en la tabla
     public function index(){
     	$pEducativo = Programa_educativo::all();    
-    	$selectedPro = Programa_educativo::first()->id;    
+    	//$selectedPro = Programa_educativo::first()->id;    
 
     	$espe = Especialidad::get();
     	//dd($espe);

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Crypt;
 
 class RegisterController extends Controller
 {
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/bienvenido';
+    protected $redirectTo = '/inicio';
 
     /**
      * Create a new controller instance.
@@ -49,6 +50,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'nombre'=>'required|string|max:100',
+            'apellidos'=>'required|string|max:100',
+            'email'=>'required',
             'username' => 'required|string|max:255|unique:users',
             'rol' => 'required|string|max:255',
             'estado' => 'required|string|max:255',
@@ -65,10 +69,13 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'nombre'=>$data['nombre'],
+            'apellidos'=>$data['apellidos'],
+            'email'=>$data['email'],
             'username' => $data['username'],
             'rol' => $data['rol'],
             'estado' => $data['estado'],
-            'password' => Hash::make($data['password']),
+            'password' => encrypt($data['password']),
         ]);
     }
 }
