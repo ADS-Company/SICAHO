@@ -17,7 +17,7 @@ class CreateProfesorCompartidoTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned()->nullable();
             $table->string('nombre');
-            $table->string('clave');
+            $table->string('clave')->unique();
             $table->string('apellidoPaterno');
             $table->string('apellidoMaterno');
             $table->string('tipoProfesor');

@@ -18,7 +18,7 @@ class CreateProfesorTable extends Migration
             $table->increments('id')->unsigned()->nullable();
             $table->timestamps();
             $table->string('nombre');
-            $table->string('clave');
+            $table->string('clave')->unique();
             $table->string('apellidoPaterno');
             $table->string('apellidoMaterno');
             $table->string('tipoProfesor');
