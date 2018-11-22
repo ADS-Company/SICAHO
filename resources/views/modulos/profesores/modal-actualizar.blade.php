@@ -1,4 +1,4 @@
-        <!--VENTANA MODAL PARA ACTUALIZAR PROFESOR-->
+<!--VENTANA MODAL PARA ACTUALIZAR PROFESOR-->
 <div class="modal fade" id="ModalActualizarProfesor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -106,4 +106,4 @@
   }, false);
 })();
 </script>
-    <!--/VENTANA MODAL PARA ACTUALIZAR PROFESOR-->
+<!--/VENTANA MODAL PARA ACTUALIZAR PROFESOR-->

@@ -446,4 +446,8 @@ box-shadow:7px 7px 5px #112;
   text-align: center;
   color: #2C3E50;
 }
+i{
+    text-decoration: none;
+    color: white;
+}
 /*fin-estilo de Tablas para carga horaria*/

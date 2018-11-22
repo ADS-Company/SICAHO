@@ -23,6 +23,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\Carga_horariaController' => $baseDir . '/app/Http/Controllers/Carga_horariaController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\ProfesorCompartidoController' => $baseDir . '/app/Http/Controllers/ProfesorCompartidoController.php',
     'App\\Http\\Controllers\\ProfesorController' => $baseDir . '/app/Http/Controllers/ProfesorController.php',
     'App\\Http\\Controllers\\ProgramaEducativoController' => $baseDir . '/app/Http/Controllers/ProgramaEducativoController.php',
     'App\\Http\\Controllers\\UsuarioController' => $baseDir . '/app/Http/Controllers/UsuarioController.php',

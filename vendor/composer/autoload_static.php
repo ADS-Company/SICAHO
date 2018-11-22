@@ -399,6 +399,7 @@ class ComposerStaticInit2f779e7aef55d6b927be0eb52e750e2d
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Carga_horariaController' => __DIR__ . '/../..' . '/app/Http/Controllers/Carga_horariaController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\ProfesorCompartidoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfesorCompartidoController.php',
         'App\\Http\\Controllers\\ProfesorController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfesorController.php',
         'App\\Http\\Controllers\\ProgramaEducativoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProgramaEducativoController.php',
         'App\\Http\\Controllers\\UsuarioController' => __DIR__ . '/../..' . '/app/Http/Controllers/UsuarioController.php',

@@ -44,6 +44,7 @@ class ProfesorController extends Controller
         $profesor->apellidoPaterno=$request->input('apellidoPaterno');
         $profesor->apellidoMaterno=$request->input('apellidoMaterno');
         $profesor->tipoProfesor=$request->get('tipoProfesor');
+        $profesor->id_programa_educativo=$request->get('programaEducativo');    
         $profesor->save();
         
         return back()->with('success','Los datos han sido guardados correctamente');
@@ -71,7 +72,7 @@ class ProfesorController extends Controller
       return back()->with('success','Los datos han sido eliminados correctamente');
         }
     }
-    
+    //método para actualizar a un profesor
     public function actualizarProfesor(Request $request){
           try{
         $id =$request->input('id');
@@ -87,7 +88,7 @@ class ProfesorController extends Controller
               return redirect('/profesores')->with('status','Algunos datos no se han ingresado correctamente por favor intente de nuevo');
           }
     }
-    
+    //método para mostrar a un profesor
     public function showPerfil(Profesor $profesor){
        //obtiene una lista que es pasada al select de programas educativos
         $programasEducativos=Programa_educativo::orderBy('nombreProgramaEducativo','asc')->pluck('nombreProgramaEducativo','id');

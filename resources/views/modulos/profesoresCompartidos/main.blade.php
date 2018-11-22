@@ -46,7 +46,10 @@ para marcar a la opción de profesores-->
                     <th scope="col">Horas totales</th>
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
+                    @if(isset($cargaHoraria))
                     <th scope="col">Compartir</th>
+                    @else
+                    @endif
                     <th scope="col">Ver perfil</th>
                 </tr>
 
@@ -61,14 +64,27 @@ para marcar a la opción de profesores-->
                 <td>{{$profesor->apellidoPaterno}}</td>
                 <td>{{$profesor->apellidoMaterno}}</td>
                 <td>{{$profesor->tipoProfesor}}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{$profesor->programaEducativo->nombreProgramaEducativo}}</td>
+                 @if(isset($cargaHoraria))
+                   <td>{{$cargaHoraria->horasTotales}}</td>
+                   @else
+                   <td>0</td>                
+                   @endif
+                   @if(isset($cargaHoraria))
+                   <td>{{$cargaHoraria->horasDisponibles}}</td>
+                   @else
+                   <td>0</td>
+                   @endif
                 <td><button type="button" class="btn btn-warning btnActualizarProfesor" data-toggle="modal" data-target="#ModalActualizarProfesor" data-id="{{$profesor->id}}" data-clave="{{$profesor->clave}}" data-nombre="{{$profesor->nombre}}" data-apellidopaterno="{{$profesor->apellidoPaterno}}" data-apellidomaterno="{{$profesor->apellidoMaterno}}" data-tipoprofesor="{{$profesor->tipoProfesor}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
                 <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminarProfesor" data-id="{{$profesor->id}}" data-clave="{{$profesor->clave}}" data-nombre="{{$profesor->nombre}}" data-apellidoPaterno="{{$profesor->apellidoPaterno}}"
                  data-apellidoMaterno="{{$profesor->apellidoMaterno}}"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
-                 <td><button class=" btn btn-warning btn-sm textVerperfil">
-                     <i class="fa fa-share-square-o" aria-hidden="true"></i></button></td>
+                 @if(isset($cargaHoraria))
+                 <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ModalCompartirProfesor" data-id="{{$profesor->id}}" data-clave="{{$profesor->clave}}" data-nombre="{{$profesor->nombre}}" data-apellidoPaterno="{{$profesor->apellidoPaterno}}"
+                 data-apellidoMaterno="{{$profesor->apellidoMaterno}}"> <i class="fa fa-share-square-o" aria-hidden="true"></i></button></td>
+                 @else
+                 @endif
+                 
+        
                 <td><a class=" btn btn-info btn-sm textVerperfil" href="/profesores/{{$profesor->id}}" ><i class="fa fa-search-plus" aria-hidden="true"></i></a></td>
                </tr>
                @endforeach

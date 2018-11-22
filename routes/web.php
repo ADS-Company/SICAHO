@@ -165,3 +165,16 @@ Route::get('/catalogosD','appController@catalogosD')->middleware('auth');
 Route::get('/usuariosD','UsuarioController@index')->middleware('auth');
 
 Auth::routes();
+
+
+//|----------------------------------------------------------------------------------------------------------
+////////////////////RUTAS DEL MODULO DE PROFESORES COMPARTIDOS////////////////////////////////////////////////////////
+//|----------------------------------------------------------------------------------------------------------
+//Ruta para agregar un nuevo profesor compartido
+Route::post('/nuevoProfesorC','ProfesorCompartidoController@nuevoProfesorC')->name('nuevoProfesorC');
+//Ruta para eliminar un profesor compartido
+Route::post('/eliminarProfesorC','ProfesorCompartidoController@eliminarProfesorC')->name('eliminarProfesorC');
+//Ruta para editar un profesor compartido
+Route::post('/editarProfesorC','ProfesorCompartidoController@editarProfesorC')->name('editarProfesorC');
+//Ruta para mostrar el perfil del profesor
+Route::get('/profesores/{profesor}/','ProfesorCompartidoController@showPerfil')->middleware('auth');

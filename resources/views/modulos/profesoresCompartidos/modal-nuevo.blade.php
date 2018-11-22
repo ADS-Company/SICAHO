@@ -9,7 +9,7 @@
         </button>
                 </div>
                 <div class="modal-body">
-                    <form class="formNuevoProfesor" method="post" action="{{route('nuevoProfesor')}}" novalidate>
+                    <form class="formNuevoProfesor" method="post" action="{{route('nuevoProfesorC')}}" novalidate>
                       {{ csrf_field() }}
                        <p class="text-muted">(*) El campo es obligatorio.</p>
                                <div class="row align-self-end">
@@ -59,17 +59,13 @@
                                    Debe rellenar el campo apellido materno.
                                 </div>
                                    </div>
-                               </div>
-                                <div class="row align-self-end">
+                               </div> 
+                               <div class="row align-self-end">
                                    <div class="col-md-4">
-                                   <label for="">(*)Tipo de profesor:</label>
+                                   <label for="">(*)Programa educativo:</label>
                                    </div>
                                    <div class="col-md-6">
-                                   <select class="custom-select my-1 mr-sm-2 cmbNTipoProfesor" id="tipoProfesor" name="tipoProfesor" required>
-                                <option selected value="">Seleccione</option>
-                                <option value="PTC">PTC</option>
-                                <option value="PA">PA</option>
-                              </select>
+                                   {!! Form::select('programaEducativo',$programasEducativos,null,['id'=>'programaEducativo','class'=>'form-control mt-1','placeholder'=>'Selecciona','required']) !!}
                               <div class="invalid-feedback">
                                    Debe elegir una opción para el tipo de profesor.
                                 </div>
