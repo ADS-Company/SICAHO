@@ -34,6 +34,13 @@ Route::get('/json-especialidades','ProgramaEducativoController@getEspecialidades
 Route::get('/json-cuatrimestres','ProgramaEducativoController@getCuatrimestres');
 //ruta para obtener los cuatrimestres de acuerdo con su especialdad 
 Route::get('/json-asignaturas','ProgramaEducativoController@getAsignaturas');
+
+//ruta para obtener la lista de especialidades de acuerdo al programa educativo
+Route::get('/json-especialidadesC','ProgramaEducativoController@getEspecialidadesC');
+//ruta para obtener los cuatrimestres de acuerdo con su especialdad 
+Route::get('/json-cuatrimestresC','ProgramaEducativoController@getCuatrimestresC');
+//ruta para obtener los cuatrimestres de acuerdo con su especialdad 
+Route::get('/json-asignaturasC','ProgramaEducativoController@getAsignaturasC');
 //Ruta para obtenerla vista de profesores compartidos
 Route::get('/profesores_compartidos','ProfesorCompartidoController@index');
 
@@ -176,5 +183,29 @@ Route::post('/nuevoProfesorC','ProfesorCompartidoController@nuevoProfesorC')->na
 Route::post('/eliminarProfesorC','ProfesorCompartidoController@eliminarProfesorC')->name('eliminarProfesorC');
 //Ruta para editar un profesor compartido
 Route::post('/editarProfesorC','ProfesorCompartidoController@editarProfesorC')->name('editarProfesorC');
+//Ruta para agregar horas un profesor compartido
+Route::post('/agregarHorasCompartido','Carga_horariaController@agregarHorasCompartido')->name('agregarHorasCompartido');
+//Ruta para eliminar la carga horaria de un profesor compartido
+Route::post('/eliminarCargaHorariaCompartido','Carga_horariaController@eliminarCargaHorariaCompartido')->name('eliminarCargaHorariaCompartido');
 //Ruta para mostrar el perfil del profesor
-Route::get('/profesores/{profesor}/','ProfesorCompartidoController@showPerfil')->middleware('auth');
+Route::get('/profesores_compartidos/{profesor}/','ProfesorCompartidoController@showPerfil')->middleware('auth');
+//Ruta para editar un profesor compartido
+Route::post('/compartirProfesor','ProfesorCompartidoController@compartirProfesor')->name('compartirProfesor');
+//Ruta para agregar asignatura a un profesor compartido
+Route::post('/agregarAsignacionAsignaturaCompartido','Carga_horariaController@agregarAsignacionAsignaturaCompartido')->name('agregarAsignacionAsignaturaCompartido');
+//Ruta para eliminar asignatura a un profesor compartido
+Route::post('/eliminarAsignacionAsignaturaCompartido','Carga_horariaController@eliminarAsignacionAsignaturaCompartido')->name('eliminarAsignacionAsignaturaCompartido');
+//Ruta para agregar actividad extra a un profesor compartido
+Route::post('/agregarActividadesExtraCompartido','Carga_horariaController@agregarActividadesExtraCompartido')->name('agregarActividadesExtraCompartido');
+//Ruta para eliminar actividad extra a un profesor compartido
+Route::post('/eliminarActividadExtraCompartido','Carga_horariaController@eliminarActividadExtraCompartido')->name('eliminarActividadExtraCompartido');
+//Ruta para agregar asignatura a un profesor compartido a un PE
+Route::post('/agregarAsignacionCompartir','Carga_horariaController@agregarAsignacionCompartir')->name('agregarAsignacionCompartir');
+//Ruta para eliminar asignatura a un profesor compartido a un PE
+Route::post('/eliminarAsignacionCompartido','Carga_horariaController@eliminarAsignacionCompartido')->name('eliminarAsignacionCompartido');
+
+
+
+
+
+

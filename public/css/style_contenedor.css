@@ -11,7 +11,12 @@ body {
 h1,h2,h3,h4,h5,h6{
     color: #2C3E50;
 }
-
+.btn-warning{
+    color: white;
+}
+.btn-warning:hover{
+    color: white;
+}
 #barraNavegacion {
     background-color: #06A987;
 -webkit-box-shadow: 2px 9px 5px -5px rgba(0,0,0,0.75);
@@ -323,7 +328,11 @@ box-shadow:7px 7px 5px #112;
 #btnNuevoProfesorModal{
     margin: 5px;
 }
+#seccionCompartido{
+    margin-top: 15px;
+}
 /*fin-estilo para la seccion de perfil profesor*/
+
 /*inicio-estilo de imagenes catalogo*/
 
 .containerImg {

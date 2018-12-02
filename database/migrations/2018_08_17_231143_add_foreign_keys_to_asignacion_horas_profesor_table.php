@@ -29,6 +29,13 @@ class AddForeignKeysToAsignacionHorasProfesorTable extends Migration
              /*Modifica y agrega la llave id_programa_educativo foranea a la tabla programa_educativo*/
             $table->integer('id_programa_educativo')->unsigned()->nullable();
             $table->foreign('id_programa_educativo')->references('id')->on('programa_educativo')->onDelete('set null');
+            /*Modifica y agrega la llave id_profesor_compartido foranea a la tabla programa_educativo*/
+            $table->integer('id_carga_horaria_compartido')->unsigned()->nullable();
+            $table->foreign('id_carga_horaria_compartido')->references('id')->on('carga_horaria_compartido')->onDelete('set null');
+             /*Modifica y agrega la llave id_compartido foranea a la tabla programa_educativo*/
+            $table->integer('id_compartido')->unsigned()->nullable();
+            $table->foreign('id_compartido')->references('id')->on('compartido')->onDelete('set null');
+            
         });
     }
 
@@ -61,6 +68,14 @@ class AddForeignKeysToAsignacionHorasProfesorTable extends Migration
             si es que ya existe*/
             $table->dropForeign('id_programa_educativo');
             $table->dropColumn('id_programa_educativo');
+             /*hace un drop a la llave foranea id_carga_horaria_compartido
+            si es que ya existe*/
+            $table->dropForeign('id_carga_horaria_compartido');
+            $table->dropColumn('id_carga_horaria_compartido');
+            /*hace un drop a la llave foranea id_compartido
+            si es que ya existe*/
+            $table->dropForeign('id_compartido');
+            $table->dropColumn('id_compartido');
         });
     }
 }
