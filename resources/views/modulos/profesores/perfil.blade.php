@@ -58,11 +58,7 @@ para marcar a la opción de profesores-->
                 <tr>
                    <td>{{$profesor->id}}</td>
                    <td>{{$profesor->clave}}</td>
-                   @if(isset($cargaHoraria))
-                   <td>{{$cargaHoraria->programaEducativo->nombreProgramaEducativo}}</td>
-                   @else
-                   <td>Aún no se agrega</td>
-                   @endif
+                   <td>{{$profesor->programaEducativo->nombreProgramaEducativo}}</td>
                    <td>{{$profesor->nombre}}</td>
                    <td>{{$profesor->apellidoPaterno}}</td>
                    <td>{{$profesor->apellidoMaterno}}</td>   

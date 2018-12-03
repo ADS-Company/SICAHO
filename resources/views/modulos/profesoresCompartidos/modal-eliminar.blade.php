@@ -9,7 +9,7 @@
         </button>
                 </div>
                 <div class="modal-body">
-                <form  method="post" action="{{ route('eliminarProfesor') }}">
+                <form  method="post" action="{{ route('eliminarProfesorC') }}">
                 {{ csrf_field() }}
                <div class="form-inline ">
                                 <input class="form-control" type="hidden" id="id" name="id" placeholder="Escriba la clave" value="" >

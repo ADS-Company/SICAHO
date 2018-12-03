@@ -37,6 +37,10 @@ class appController extends Controller
      public function usuarios(){
         return view('modulos.usuarios.main');
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 
     //--------------------------------------------------//
     //--------------------------------------------------//

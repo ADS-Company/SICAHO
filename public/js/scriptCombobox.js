@@ -18,6 +18,7 @@ $(document).ready(function () {
            $(".modal-body #cuatrimestre").append('<option value="0" >Selecciona</option>');
             $.each(data,function(i,cuatri){
               $(".modal-body #cuatrimestre").append("<option value="+cuatri.id+" >"+cuatri.nombreCuatrimestre+"</option>"); 
+                
            });
        }); 
     });
@@ -27,9 +28,48 @@ $(document).ready(function () {
        var idEspecialidad=$(".modal-body #especialidad").val();
        $.getJSON("/json-asignaturas?id_cuatrimestre="+idcuatrimestre+"&id_especialidad="+idEspecialidad,function(data){
           $(".modal-body #asignatura").empty(); 
-           $(".modal-body #asignatura").append('<option value="0" >Selecciona</option>');
+           $(".modal-body #asignatura").append('<option value="0">Selecciona</option>');
+            $.each(data,function(i,asignatura){
+              $(".modal-body #asignatura").append("<option value="+asignatura.id+" >"+asignatura.nombreAsignatura+"</option>"); 
+                console.log("id espe:"+asignatura.nombreAsignatura);
+           });
+       }); 
+    });
+    
+    
+    
+     //consulta dinamica para las especialidades
+    $(".modal-body #programaEducativo").bind("change",function(event){
+       var idPrograma=event.target.value;
+       $.getJSON("/json-especialidadesC?id_programa_educativo="+idPrograma,function(data){
+          $(".modal-body #especialidades").empty(); 
+           $(".modal-body #especialidades").append('<option value="0" >Selecciona</option>');
+            $.each(data,function(i,esp){
+              $(".modal-body #especialidades").append("<option value="+esp.id+" >"+esp.nombreEspecialidad+"</option>"); 
+           });
+       }); 
+    });
+     $(".modal-body #especialidades").bind("change",function(event){
+       var idEspecialidad=event.target.value;
+       $.getJSON("/json-cuatrimestresC?id_especialidad="+idEspecialidad,function(data){
+          $(".modal-body #cuatrimestres").empty(); 
+           $(".modal-body #cuatrimestres").append('<option value="0" >Selecciona</option>');
+            $.each(data,function(i,cuatri){
+              $(".modal-body #cuatrimestres").append("<option value="+cuatri.id+" >"+cuatri.nombreCuatrimestre+"</option>"); 
+                
+           });
+       }); 
+    });
+    //consulta dinamica para los asignaturas 
+    $(".modal-body #cuatrimestres").bind("change",function(event){
+       var idcuatrimestre=event.target.value;
+       var idEspecialidad=$(".modal-body #especialidades").val();
+       $.getJSON("/json-asignaturasC?id_cuatrimestre="+idcuatrimestre+"&id_especialidad="+idEspecialidad,function(data){
+          $(".modal-body #asignaturas").empty(); 
+           $(".modal-body #asignaturas").append('<option value="0">Selecciona</option>');
             $.each(data,function(i,asig){
-              $(".modal-body #asignatura").append("<option value="+asig.id+" >"+asig.nombreAsignatura+"</option>"); 
+              $(".modal-body #asignaturas").append("<option value="+asig.id+" >"+asig.nombreAsignatura+"</option>"); 
+                
            });
        }); 
     });

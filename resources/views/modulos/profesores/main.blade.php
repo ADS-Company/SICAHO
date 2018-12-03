@@ -72,17 +72,17 @@ para marcar a la opción de profesores-->
     <!--/SECCIÓN DE TABLA-->
       
        <!--VENTANA MODAL PARA ACTUALIZAR PROFESOR-->
-   @extends('modulos.profesores.modal-actualizar')
+   @include('modulos.profesores.modal-actualizar')
     <!--/VENTANA MODAL PARA ACTUALIZAR PROFESOR-->
     
      <!--VENTANA MODAL PARA NUEVO PROFESOR-->
-     @extends('modulos.profesores.modal-nuevo')
+     @include('modulos.profesores.modal-nuevo')
     <!--/VENTANA MODAL PARA NUEVO PROFESOR-->
     
     
     
     <!--VENTANA MODAL PARA ELIMINAR PROFESOR-->
-       @extends('modulos.profesores.modal-eliminar')
+       @include('modulos.profesores.modal-eliminar')
       <!--/VENTANA MODAL PARA ELIMINAR PROFESOR-->
      
 @endsection

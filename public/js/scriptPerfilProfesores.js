@@ -48,6 +48,21 @@ console.log('modal cargado');
 
 });
     
+          //pasa los datos de la fila al modal de eliminar  asignatura
+$('#ModalEliminarAsignaturaCompartido').on('show.bs.modal', function (event) {
+console.log('modal cargado');
+  var button = $(event.relatedTarget) // botón que activo el modal
+   //extrae la informacion de los data
+  var id = button.data('id')
+  var nombre = button.data('nombre')
+  
+  /*Actualiza el contenido y pasa los valores que recibio de la tabla todo esto lo pasa al modal*/
+  var modal = $(this)
+  modal.find('.modal-body #idAsignatura').val(id)
+  modal.find('.modal-body #asignatura').val(nombre)
+
+});
+    
            //pasa los datos de la fila al modal de eliminar  asignatura
 $('#ModalEliminarActividadProfesor').on('show.bs.modal', function (event) {
 console.log('modal cargado');
@@ -62,4 +77,6 @@ console.log('modal cargado');
   modal.find('.modal-body #actividad').val(nombre)
 
 });
+        //pasa los datos de la fila al modal de actualizar  profesor
+
 });

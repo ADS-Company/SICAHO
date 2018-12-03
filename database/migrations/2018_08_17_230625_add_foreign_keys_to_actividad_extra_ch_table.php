@@ -30,6 +30,11 @@ class AddForeignKeysToActividadExtraChTable extends Migration
             /*Modifica y agrega la llave id_cuatrimestre foranea a la tabla actividad_extra_ch*/
             $table->integer('id_cuatrimestre')->unsigned()->nullable();
             $table->foreign('id_cuatrimestre')->references('id')->on('cuatrimestre')->onDelete('set null');
+             $table->integer('id_carga_horaria_compartido')->unsigned()->nullable();
+            $table->foreign('id_carga_horaria_compartido')->references('id')->on('carga_horaria_compartido')->onDelete('set null');
+             /*Modifica y agrega la llave id_compartido foranea a la tabla programa_educativo*/
+            $table->integer('id_compartido')->unsigned()->nullable();
+            $table->foreign('id_compartido')->references('id')->on('compartido')->onDelete('set null');
         });
     }
 
@@ -61,6 +66,14 @@ class AddForeignKeysToActividadExtraChTable extends Migration
             si es que ya existe*/
             $table->dropForeign('id_cuatrimestre');
             $table->dropColumn('id_cuatrimestre');
+             /*hace un drop a la llave foranea id_carga_horaria_compartido
+            si es que ya existe*/
+            $table->dropForeign('id_carga_horaria_compartido');
+            $table->dropColumn('id_carga_horaria_compartido');
+            /*hace un drop a la llave foranea id_compartido
+            si es que ya existe*/
+            $table->dropForeign('id_compartido');
+            $table->dropColumn('id_compartido');
         });
     }
 }

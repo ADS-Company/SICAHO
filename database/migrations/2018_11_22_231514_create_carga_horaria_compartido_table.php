@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProfesorCompartidoTable extends Migration
+class CreateCargaHorariaCompartidoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateProfesorCompartidoTable extends Migration
      */
     public function up()
     {
-        Schema::create('profesor_compartido', function (Blueprint $table) {
+        Schema::create('carga_horaria_compartido', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned()->nullable();
-            $table->string('nombre');
-            $table->string('clave')->unique();
-            $table->string('apellidoPaterno');
-            $table->string('apellidoMaterno');
-            $table->string('tipoProfesor');
+            $table->integer('horasTotales');
+            $table->integer('horasDisponibles');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateProfesorCompartidoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profesorCompartido');
+        Schema::dropIfExists('carga_horaria_compartido');
     }
 }
