@@ -25,7 +25,7 @@
 
 <body>
     <!--BARRA DE NAVEGACION-->
-    <nav id="barraNavegacion" class="navbar fixed-top navbar-expand-lg " style="background-color: red;">
+    <nav id="barraNavegacion" class="navbar fixed-top navbar-expand-lg ">
         <a class="navbar-brand" href="{{ url('/inicioD') }}">
       <img id="logoSicaho" src="{{ asset('images/logo_SICAHO_verde.png') }}" alt="SICAHO">
       </a>
@@ -64,7 +64,7 @@
                             {{ Auth::user()->username }} 
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/usuarios/{{Auth::user()->id}}">Ver perfil</a>
+                            <!--<a class="dropdown-item" href="/usuarios/{{Auth::user()->id}}">Ver perfil</a>-->
                             <div class="dropdown-divider"></div>
                             <form method="post" action="{{ route('logout') }}">
                             @csrf

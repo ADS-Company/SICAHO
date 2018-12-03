@@ -9,9 +9,8 @@
         </button>
                 </div>
                 <div class="modal-body">
-                    <form class="formEditarProfesor" method="post" action="{{route('actualizarProfesor')}}">
+                    <form class="formEditarProfesor" method="post" action="{{route('actualizarProfesorD')}}">
                        {{ csrf_field() }}
-                       
                                 <input class="form-control" type="hidden" id="id" name="id" value="" >
                         <p class="text-muted">(*) El campo es obligatorio.</p>
                                <div class="row align-self-end">
@@ -62,17 +61,13 @@
                                    </div>
                         </div>
                                <div class="row align-self-end">
-                                   <div class="col-md-4"><label for="">(*)Tipo de profesor:</label></div>
+                                   <div class="col-md-4"><label for="">(*)Programa educativo:</label></div>
                                    <div class="col-md-6">
-                                    <select class="custom-select my-1 mr-sm-2 " id="tipoProfesor" name="tipoProfesor" required>
-                                    <option value="">Seleccione</option>
-                                    <option value="PTC">PTC</option>
-                                    <option value="PA">PA</option>
-                                  </select>
-                                    <!--evaluar si trae un error referente a el input-->
-                                    <div class="invalid-feedback">
-                                       Debe rellenar el campo tipo de profesor.
-                                    </div>
+                                      <input type="text" id="proEdu" name="proEdu" class="form-control mt-1" required value="{{ $carrera }}" disabled>
+                                      <!--evaluar si trae un error referente a el input-->
+                                      <div class="invalid-feedback">
+                                         Debe rellenar el campo tipo de profesor.
+                                      </div>
                                    </div>
                                </div>
                 <div class="modal-footer">

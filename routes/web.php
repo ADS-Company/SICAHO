@@ -123,15 +123,13 @@ Route::get('catalogos', 'catalogoController@index');
 Route::get('/verCarrera/{id}', 'catalogoController@verCarrera')->name('verCarrera');
 //////////////////// FIN DE LAS RUTAS DEL MODULO DE CATALOGOS////////////////////////////////////////////////////////
 
+
+
 //ruta para obtener la vista de Director
 Route::get('/inicioD','appController@mainD')->middleware('auth');
 //ruta para obtener la vista de  la carga horaria
 //Route::get('/cargaHorariaD','appController@cargaHorariaD')->middleware('auth');
 Route::get('/cargaHorariaD', 'cargaHorariaController@indexD');
-//ruta para obtener la vista de asignaturas
-Route::get('/asignaturasD','appController@asignaturasD')->middleware('auth');
-//Ruta para mostrar tabla de asignaturas
-Route::get('/asignaturasD', 'crudAsignaturas@indexD')->middleware('auth');
 //TODOS ROUTES QUE TRAERÁ POR POST PARA PROFESOR
 //ruta para obtener la vista de profesores
 Route::get('/profesoresD','ProfesorController@indexD')->middleware('auth');
@@ -140,9 +138,9 @@ Route::get('/profesorD/{profesor}/','ProfesorController@mostrarPrefilD')->middle
 //Ruta post que recibe el formulario de nuevo profesor
 Route::post('/nuevoProfesorD','ProfesorController@nuevoProfesorD')->name('nuevoProfesorD');
 //ruta post que recibe el id para eliminar a un profesor 
-Route::post('/eliminarProfesor','ProfesorController@eliminarProfesor')->name('eliminarProfesor');
+Route::post('/eliminarProfesorD','ProfesorController@eliminarProfesorD')->name('eliminarProfesorD');
 //ruta post que recibe el id para actualizar a un profesor
-Route::post('/actualizarProfesor','ProfesorController@actualizarProfesor')->name('actualizarProfesor');
+Route::post('/actualizarProfesorD','ProfesorController@actualizarProfesorD')->name('actualizarProfesorD');
 //TODOS ROUTES QUE TRAERÁ POR POST PARA CARGA HORARIA
 Route::post('/agregarHoras','Carga_horariaController@agregarHoras')->name('agregarHoras');
 //método para agregar la asinacion de materias a un profesor
@@ -155,10 +153,45 @@ Route::post('/agregarActividadesExtra','Carga_HorariaController@agregarActividad
 Route::post('/eliminarActividadExtra','Carga_HorariaController@eliminarActividadExtra')->name('eliminarActividadExtra');
 //post para eliminar la carga horaria de un profesor
 Route::post('/eliminarCargaHoraria','Carga_HorariaController@eliminarCargaHoraria')->name('eliminarCargaHoraria');
-
-/*RUTA PARA LOS MODULOS DE PROFESORES*/
+//|----------------------------------------------------------------------------------------------------------
+////////////////////RUTAS DEL MODULO DE CARRRERAS////////////////////////////////////////////////////////
+//|----------------------------------------------------------------------------------------------------------
 //Route::get('/especialidadesD','crudCarreras@indexD')->middleware('auth');
 Route::get('/carrerasD', 'crudCarrearas@indexD')->middleware('auth');
+//Ruta para registrar una especialidad
+Route::post('/GuardarD', ['uses' => 'crudCarrearas@storeD', 'as' => 'GuardarD']);
+//Ruta para eliminar especialidad
+Route::DELETE('/destroyCarreraD/{id}', 'crudCarrearas@destroyCarreraD')->name('destroyCarreraD');
+//Rutas para editar especialidad
+Route::post('/modalEditCarreraD/{id}', 'crudCarrearas@editD')->name('modalEditCarreraD');
+//////////////////// FIN DE LAS RUTAS DEL MODULO DE CARRERAS////////////////////////////////////////////////////////
+
+//|----------------------------------------------------------------------------------------------------------
+////////////////////RUTAS DEL MODULO DE ASIGNATURAS////////////////////////////////////////////////////////
+//|----------------------------------------------------------------------------------------------------------
+//ruta para obtener la vista de asignaturas
+Route::get('/asignaturasD','appController@asignaturasD')->middleware('auth');
+//Ruta para mostrar tabla de asignaturas
+Route::get('/asignaturasD', 'crudAsignaturas@indexD')->middleware('auth');
+//Ruta para registrar una asignatura
+Route::post('/GuardarAsignaturaD', ['uses' => 'crudAsignaturas@storeD', 'as' => 'GuardarAsignaturaD']);
+//Ruta para Editar Asignatura
+Route::get('/editAsignatura/{id}', 'crudAsignaturas@editAsignatura')->name('editAsignatura');
+Route::post('/modalEditAsignatura/{id}', 'crudAsignaturas@editarAsignatura')->name('modalEditAsignatura');
+//Ruta para eliminar una asignaruta
+Route::DELETE('/destroyAsignatura/{id}', 'crudAsignaturas@destroyAsignatura')->name('destroyAsignatura');
+//Ruta para mostrar tabla de asignaturas
+Route::get('/asignaturas', 'crudAsignaturas@index')->middleware('auth');
+//Ruta para cmbiar select dinamico de Especialidades Para modal Nueva Asignatura
+Route::get('/json-Carreras', 'crudAsignaturas@especialidades');
+//Ruta para cmbiar select dinamico de Cuatrimestre Para modal Nueva Asignatura
+Route::get('/json-Cuatri', 'crudAsignaturas@cuatris');
+//Ruta para cmbiar select dinamico de Especialidades Para modal Editar Asignatura
+Route::get('/json-CarrerasE', 'crudAsignaturas@especialidadesE');
+//Ruta para cmbiar select dinamico de Cuatrimestre Para modal  Editar Asignatura
+Route::get('/json-CuatriE', 'crudAsignaturas@cuatrisE');
+//////////////////// FIN DE LAS RUTAS DEL MODULO DE ASIGNATURAS////////////////////////////////////////////////////////
+
 //ruta para obtener la vista de catalogos
 Route::get('/catalogosD','appController@catalogosD')->middleware('auth');
 //ruta para obtener la vista de usuarios

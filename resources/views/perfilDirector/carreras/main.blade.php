@@ -8,18 +8,20 @@
 @section('contenidoD')
    <!--SECCIÓN DE GESTION-->
     <div id="seccionGestion" class="container">
+        <div style="text-align: center;">
+           <h4>{{ Auth::user()->estado }} </h4>
+       </div>
         <div class="row">
             <div class="col-md-8">
                  @include('PerfilDirector.carreras.error')
             </div>
+
             <div class="col-md-4">
                     <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#ModalNuevoProfesor">Nueva</button>
             </div>
         </div>
     </div>
     <!--/SECCIÓN DE GESTION-->
-        
-       
 
     <!--SECCIÓN DE TABLA-->
       <div class="container" id="seccionTabla">
@@ -29,43 +31,29 @@
                     <th scope="col">Id</th>
                     <th scope="col">Nombre de la especialidad</th>
                     <th scope="col">Acrónimo</th>
-                    <th scope="col">Programa educativo</th>
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
                 </tr>
             </thead>
-            @foreach($carreras as $car)
+            @foreach($espe as $esp)
             <tbody>
                 <tr>
-                    <td>{{ $car->id }}</td>  
-                    <td>{{ $car->nombreEspecialidad }}</td>
-                    <td>{{ $car->acronimo }}</td>
-                    <td>{{ $car->nombreProgramaEducativo }}</td>
+                    <td>{{ $esp->id }}</td>  
+                    <td>{{ $esp->nombreEspecialidad }}</td>
+                    <td>{{ $esp->acronimo }}</td>
                     <td>
-                    <a data-target="#Modal-editar-{{$car->id}}" data-toggle="modal"><button class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+                    <a data-target="#Modal-editar-{{$esp->id}}" data-toggle="modal"><button class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
                     </td>
                     <td>
-                    <a href="" data-target="#Modal-Eliminar-{{$car->id}}" data-toggle="modal"><button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></a>
+                    <a href="" data-target="#Modal-Eliminar-{{$esp->id}}" data-toggle="modal"><button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></a>
                     </td>
                 </tr>
             </tbody>
-            @include('modulos.carreras.modalEditar')
-            @include('modulos.carreras.modalEliminar')
+            @include('perfilDirector.carreras.modalEditar')
+            @include('perfilDirector.carreras.modalEliminar')
             @endforeach
         </table>
     </div>
-
-        <div class="container">
-          <div class="row justify-content-md-center">
-            <div class="col col-lg-2">
-            </div>
-            <div class="col-md-auto">
-              {{ $carrera->links('pagination::Bootstrap-4') }}
-            </div>
-            <div class="col col-lg-2">
-            </div>
-          </div>
-        </div>
     <!--/SECCIÓN DE TABLA-->
       <!--VENTANA MODAL PARA NUEVO CARRERA-->
     <div class="modal fade" id="ModalNuevoProfesor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -78,7 +66,7 @@
         </button>
                 </div>
                 <div class="modal-body">
-                    <form class="formNuevaEspecialidad" action="{{ route('Guardar') }}" method="post">
+                    <form class="formNuevaEspecialidad" action="{{ route('GuardarD') }}" method="post">
                         {{ csrf_field() }}
                         <p class="text-muted">(*) El campo es obligatorio.</p>
                         <div class="row align-self-end">
@@ -106,12 +94,7 @@
                             <div class="row align-self-end">
                                 <div class="col-md-4"><label for="chbNuevoEstado">(*)Programa  educativo :</label></div>
                                 <div class="col-md-6">
-                                    <select name="ProgramaEducativo" id="pEdu" class="custom-select my-1 mr-sm-2" required>
-                                        <option value="">Seleccione</option>
-                                        @foreach($pEducativo as $pe)
-                                            <option value="{{ $pe->id }}">{{ $pe->nombreProgramaEducativo }}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" id="proEdu" name="proEdu" class="form-control mt-1" required value="{{ $carrera }}" disabled>
                                     <div class="invalid-feedback">
                                    Debe elegir una opción para el programa educativo.
                                 </div>

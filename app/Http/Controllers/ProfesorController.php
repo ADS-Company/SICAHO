@@ -74,18 +74,18 @@ class ProfesorController extends Controller
     
     public function actualizarProfesor(Request $request){
           try{
-        $id =$request->input('id');
-        $profesor = Profesor::find($id);      
-        $profesor->clave = $request->input('clave');
-        $profesor->nombre  = $request->input('nombre');
-        $profesor->apellidoPaterno = $request->input('apellidoPaterno');
-        $profesor->apellidoMaterno  = $request->input('apellidoMaterno');
-        $profesor->tipoProfesor  = $request->get('tipoProfesor');
-        $profesor->save();
-          return back()->with('success','Los datos han sido actualizados correctamente');
-          }catch(QueryException $ex){
-              return redirect('/profesores')->with('status','Algunos datos no se han ingresado correctamente por favor intente de nuevo');
-          }
+            $id =$request->input('id');
+            $profesor = Profesor::find($id);      
+            $profesor->clave = $request->input('clave');
+            $profesor->nombre  = $request->input('nombre');
+            $profesor->apellidoPaterno = $request->input('apellidoPaterno');
+            $profesor->apellidoMaterno  = $request->input('apellidoMaterno');
+            $profesor->tipoProfesor  = $request->get('tipoProfesor');
+            $profesor->save();
+            return back()->with('success','Los datos han sido actualizados correctamente');
+            }catch(QueryException $ex){
+                return redirect('/profesores')->with('status','Algunos datos no se han ingresado correctamente por favor intente de nuevo');
+            }
     }
     
     public function showPerfil(Profesor $profesor){
@@ -127,6 +127,7 @@ class ProfesorController extends Controller
         
         }
     }
+
     //método que devuelve todad las asignaturas relacionadas con una carga horaria
     public function getAsignaturasProfesor($id_carga_horaria){
         //encuentra la carga horaria por medio del parametro pasado
@@ -136,8 +137,9 @@ class ProfesorController extends Controller
         //retorna la collección de datos
         return $asignaturasProfesor;
     }
+
     //método que devuelve todad las actividades relacionadas con una carga horaria
-     public function getActividadesProfesor($id_carga_horaria){
+    public function getActividadesProfesor($id_carga_horaria){
         //encuentra la carga horaria por medio del parametro pasado
         $cargaHoraria=Carga_horaria::findOrFail($id_carga_horaria);
         //asigna toda la collección de asignacion al objeto asignaturasProfesor
@@ -149,27 +151,75 @@ class ProfesorController extends Controller
 
 
     public function indexD(){
+
       $carrera=Auth::user()->estado;
-        //dd($carrera);
+      //obtiene una lista de los programas educativos 
+        $programasEducativos=Programa_educativo::where('nombreProgramaEducativo',$carrera)->orderBy('nombreProgramaEducativo','asc')->pluck('nombreProgramaEducativo','id');
+        //dd($programasEducativos);
         switch ($carrera) {
-            case 'TIC':
+            case 'Tecnologías de la Información y Comunicación':
                 $tics=Programa_educativo::where('nombreProgramaEducativo','Tecnologías de la Información y Comunicación')->first();
-                $pro= $tics->cargashorarias()->get();
-                $profesor=$pro;
-                //$profesor=Profesor::all();
+                $idTics=$tics->id;
+                $proEdu=Profesor::where('id_programa_educativo',$idTics)->get();
+                $profesor= $proEdu;
                 //dd($profesor);
                 break;
-            case 'MECATRÓNICA':
-                $meca=Programa_educativo::where('nombreProgramaEducativo','Mecatrónica')->first();
-                $pro= $meca->cargashorarias()->get();
-                $profesor=$pro;
-                //$id=$meca->cargashorarias()->id;
+            case 'Agricultura Sustentable y Protegida':
+                $agricultura=Programa_educativo::where('nombreProgramaEducativo','Agricultura Sustentable y Protegida')->first();
+                $idAgri=$agricultura->id;
+                $proEdu=Profesor::where('id_programa_educativo',$idAgri)->get();
+                $profesor= $proEdu;
+                break;
+            case 'Gestión de Proyectos':
+                $gestion=Programa_educativo::where('nombreProgramaEducativo','Gestión de Proyectos')->first();
+                $idGp=$gestion->id;
+                $proEdu=Profesor::where('id_programa_educativo',$idGp)->get();
+                $profesor= $proEdu;
+                //dd($profesor);
+                break;
+            case 'Negocios y Gestión Empresarial':
+                $negocios=Programa_educativo::where('nombreProgramaEducativo','Negocios y Gestión Empresarial')->first();
+                $idNeg=$negocios->id;
+                $proEdu=Profesor::where('id_programa_educativo',$idNeg)->get();
+                $profesor= $proEdu;
+                break;
+            case 'Finanzas y Fiscal Contador Público':
+                $finanzas=Programa_educativo::where('nombreProgramaEducativo','Finanzas y Fiscal Contador Público')->first();
+                $idFina=$finanzas->id;
+                $proEdu=Profesor::where('id_programa_educativo',$idFina)->get();
+                $profesor= $proEdu;
+                //dd($profesor);
+                break;
+            case 'Mecatrónica':
+                $mecatrónica=Programa_educativo::where('nombreProgramaEducativo','Mecatrónica')->first();
+                $idMeca=$mecatrónica->id;
+                $proEdu=Profesor::where('id_programa_educativo',$idMeca)->get();
+                $profesor= $proEdu;
+                break;
+            case 'Procesos Bioalimentarios':
+                $procesos=Programa_educativo::where('nombreProgramaEducativo','Procesos Bioalimentarios')->first();
+                $idProc=$procesos->id;
+                $proEdu=Profesor::where('id_programa_educativo',$idProc)->get();
+                $profesor= $proEdu;
+                //dd($profesor);
+                break;
+            case 'Mantenimiento Industrial':
+                $mantenimiento=Programa_educativo::where('nombreProgramaEducativo','Mantenimiento Industrial')->first();
+                $idMant=$mantenimiento->id;
+                $proEdu=Profesor::where('id_programa_educativo',$idMant)->get();
+                $profesor= $proEdu;
+                break;
+            case 'Ingeniería Industrial':
+                $industrial=Programa_educativo::where('nombreProgramaEducativo','Ingeniería Industrial')->first();
+                $idTIndu=$industrial->id;
+                $proEdu=Profesor::where('id_programa_educativo',$idTIndu)->get();
+                $profesor= $proEdu;
                 //dd($profesor);
                 break;
             default:
                 break;
         }
-        return view('perfilDirector.profesores.main', compact('carrera','profesor'));
+        return view('perfilDirector.profesores.main', compact('carrera','profesor','programasEducativos'));
     }
 
     public function mostrarPrefilD(Profesor $profesor){
@@ -212,6 +262,9 @@ class ProfesorController extends Controller
     }
 
     public function nuevoProfesorD(Request $request){
+        $carrera=Auth::user()->estado;
+        $programasEducativos=Programa_educativo::where('nombreProgramaEducativo',$carrera)->first();
+        $idCarrera=$programasEducativos->id;
         //try que realiza todo el código de guardado
         try{
         //crea una instancia del modelo para poder acceder a la base de datos 
@@ -221,12 +274,57 @@ class ProfesorController extends Controller
         $profesor->nombre=$request->input('nombre');
         $profesor->apellidoPaterno=$request->input('apellidoPaterno');
         $profesor->apellidoMaterno=$request->input('apellidoMaterno');
-        $profesor->tipoProfesor=$request->get('tipoProfesor');
+        $profesor->tipoProfesor='PTC';
+        $profesor->id_programa_educativo=$idCarrera;
+        //$profesor->id_programa_educativo=$request->get('programaEducativo');
         $profesor->save();
         
         return back()->with('success','Los datos han sido guardados correctamente');
         }catch(QueryException $ex){
-            return redirect('/profesores')->with('status','Algunos datos no se han ingresado correctamente por favor intente de nuevo');
+            return redirect('/profesoresD')->with('status','Algunos datos no se han ingresado correctamente por favor intente de nuevo');
         }      
     }
+
+    public function actualizarProfesorD(Request $request){
+        $carrera=Auth::user()->estado;
+        $programasEducativos=Programa_educativo::where('nombreProgramaEducativo',$carrera)->first();
+        $idCarrera=$programasEducativos->id;
+        //dd($idCarrera);
+          try{
+            $id =$request->input('id');
+            $profesor = Profesor::find($id);  
+            $profesor->clave = $request->input('clave');
+            $profesor->nombre  = $request->input('nombre');
+            $profesor->apellidoPaterno = $request->input('apellidoPaterno');
+            $profesor->apellidoMaterno  = $request->input('apellidoMaterno');
+            $profesor->tipoProfesor  = 'PTC';
+            $profesor->id_programa_educativo  = $idCarrera;
+            //dd($profesor);   
+            $profesor->save();
+            return back()->with('success','Los datos han sido actualizados correctamente');
+            }catch(QueryException $ex){
+                return redirect('/profesoresD')->with('status','Algunos datos no se han ingresado correctamente por favor intente de nuevo');
+            }
+    }
+
+    public function eliminarProfesorD(Request $request){
+
+        $id_profesor =$request->input('id');
+        //Busca la carga horaria del profesor por medio de su id
+        $cargaHoraria=Carga_horaria::where('id_profesor',$id_profesor);
+        //encuentra al profesor por medio de su id
+        $profesor = Profesor::findOrFail($id_profesor);
+        //regresa true si el objeto $cargaHoraria es null
+            if(is_null($cargaHoraria)){
+                $profesor->delete();
+             //regre a la vista con un mensaje de exito
+                return back()->with('success','Los datos han sido eliminados correctamente');
+            }else{
+                $profesor->delete();
+                $cargaHoraria->delete();
+             //regre a la vista con un mensaje de exito
+                return back()->with('success','Los datos han sido eliminados correctamente');
+        }
+    }
+
 }

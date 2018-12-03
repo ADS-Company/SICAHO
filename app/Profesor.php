@@ -29,4 +29,8 @@ class Profesor extends Model
       public function cargaHorariaProfesor(){
         return $this->hasMany(Carga_horaria::class,'id_profesor');
     }
+
+    public function programaEducativo(){
+        return $this->belongsTo(Programa_educativo::class,'id_programa_educativo');
+    }
 }

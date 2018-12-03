@@ -22,13 +22,14 @@ use App\Programa_educativo;
 use App\Asignatura_cuatrimestre;
 use App\Especialidad;
 use App\Cuatrimestre;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\LoginRequest;
 
 
-class crudAsignaturas extends Controller
-{
-	//Metodo para mostrar los datos de la asignatura
+class crudAsignaturas extends Controller{
+	 //Metodo para mostrar los datos de la asignatura
 	public function index(){
-		 $programasEducativos=Programa_educativo::orderBy('nombreProgramaEducativo','asc')->pluck('nombreProgramaEducativo','id');
+		$programasEducativos=Programa_educativo::orderBy('nombreProgramaEducativo','asc')->pluck('nombreProgramaEducativo','id');
 		$consulta = DB::table('carga_horaria')
 		->join('profesor','profesor.id','=','carga_horaria.id_profesor')
 		->join('programa_educativo','programa_educativo.id','=','carga_horaria.id_programa_educativo')
@@ -37,18 +38,7 @@ class crudAsignaturas extends Controller
 	    $materias = Asignatura::paginate(10);
 	    //dd($materias);
 	    return view('modulos.asignaturas.main',compact('materias','consulta','programasEducativos'));
-  	}
-  	public function indexD(){
-		 $programasEducativos=Programa_educativo::orderBy('nombreProgramaEducativo','asc')->pluck('nombreProgramaEducativo','id');
-		$consulta = DB::table('carga_horaria')
-		->join('profesor','profesor.id','=','carga_horaria.id_profesor')
-		->join('programa_educativo','programa_educativo.id','=','carga_horaria.id_programa_educativo')
-		->get();
-
-	    $materias = Asignatura::paginate(10);
-	    //dd($materias);
-	    return view('perfilDirector.asignaturas.main',compact('materias','consulta','programasEducativos'));
-  	}
+	}
 
   	//Metodo para mostrar los datos en el select especialidad del modal nuevaAsignatura
   	public function especialidades(){
@@ -174,4 +164,17 @@ class crudAsignaturas extends Controller
             return back()->with('error','Algunos datos no se han guardado correctamente, por favor intente de nuevo.');
         }
 	}
+
+
+	
+	
+  	public function indexD(){
+  		$carrera=Auth::user()->estado;
+	    $programasEducativos=Programa_educativo::where('nombreProgramaEducativo',$carrera)->first();
+	    $idCarrera=$programasEducativos->id;
+	    $id=Programa_educativo::where('id',$idCarrera)->select('id')->first();
+		$asignatura= Asignatura::where('id_programa_educativo',$idCarrera)->get();
+	    //dd($id);
+	    return view('perfilDirector.asignaturas.main',compact('asignatura','carrera','programasEducativos','idCarrera','id'));
+  	}
 }

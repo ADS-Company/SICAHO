@@ -1,4 +1,6 @@
-<h3 class="TituloCarrerasPagina"></h3>{{ $carrera }}<br><br>
+    <div style="text-align: center;">
+        <h4>{{ Auth::user()->estado }} </h4>
+    </div>
     <h2>Profesores de tiempo completo</h2><br>
      <!--SECCIÓN DE TABLA-->
       <div class="container" id="seccionTabla">

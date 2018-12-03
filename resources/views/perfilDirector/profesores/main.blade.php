@@ -8,6 +8,9 @@ para marcar a la opción de profesores-->
 @section('contenidoD')
     <!--SECCIÓN DE GESTION-->
     <div id="seccionGestion" class="container">
+        <div style="text-align: center;">
+            <h4>{{ Auth::user()->estado }} </h4>
+        </div>
         <div class="row">
             <div class="col-md-8">
                         @if(session('success'))
@@ -22,7 +25,7 @@ para marcar a la opción de profesores-->
                          </div>
                          @endif
                     </div>
-            <div class="col-md-4 ">
+            <div class="col-md-4">
                 <div class="section_botones">
                     <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#ModalNuevoProfesor">Nuevo</button>
                 </div>
@@ -30,7 +33,7 @@ para marcar a la opción de profesores-->
         </div>
     </div>
     <!--/SECCIÓN DE GESTION-->
-
+<br>
     <!--SECCIÓN DE TABLA-->
       <div class="container" >
         <table class="table table-bordered" id="tablaProfesores">
@@ -50,15 +53,14 @@ para marcar a la opción de profesores-->
             </thead>
             <tbody>
                @csrf 
-               <!--<?php  $no=1; ?>-->
                @foreach($profesor as $profesor)
                <tr class="profesor{{$profesor->id}}">
                 <td>{{ $profesor->id }}</td>
                 <td>{{ $profesor->clave}}</td>
-                <td>{{ $profesor->profesoresCH->nombre }}</td>  
-                <td>{{ $profesor->profesoresCH->apellidoPaterno }}</td>
-                <td>{{ $profesor->profesoresCH->apellidoMaterno }}</td>
-                <td>{{ $profesor->profesoresCH->tipoProfesor }}</td>
+                <td>{{ $profesor->nombre }}</td>  
+                <td>{{ $profesor->apellidoPaterno }}</td>
+                <td>{{ $profesor->apellidoMaterno }}</td>
+                <td>{{ $profesor->tipoProfesor }}</td>
                 <td><button type="button" class="btn btn-warning btnActualizarProfesor" data-toggle="modal" data-target="#ModalActualizarProfesor" data-id="{{$profesor->id}}" data-clave="{{$profesor->clave}}" data-nombre="{{$profesor->nombre}}" data-apellidopaterno="{{$profesor->apellidoPaterno}}" data-apellidomaterno="{{$profesor->apellidoMaterno}}" data-tipoprofesor="{{$profesor->tipoProfesor}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
                 <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminarProfesor" data-id="{{$profesor->id}}" data-clave="{{$profesor->clave}}" data-nombre="{{$profesor->nombre}}" data-apellidoPaterno="{{$profesor->apellidoPaterno}}"
                  data-apellidoMaterno="{{$profesor->apellidoMaterno}}"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
@@ -71,18 +73,16 @@ para marcar a la opción de profesores-->
     
     <!--/SECCIÓN DE TABLA-->
       
-       <!--VENTANA MODAL PARA ACTUALIZAR PROFESOR-->
-   @extends('modulos.profesores.modal-actualizar')
+    <!--VENTANA MODAL PARA ACTUALIZAR PROFESOR-->
+        @include('perfilDirector.profesores.modal-actualizar')
     <!--/VENTANA MODAL PARA ACTUALIZAR PROFESOR-->
     
-     <!--VENTANA MODAL PARA NUEVO PROFESOR-->
-     @extends('modulos.profesores.modal-nuevo')
+    <!--VENTANA MODAL PARA NUEVO PROFESOR-->
+        @include('perfilDirector.profesores.modal-nuevo')
     <!--/VENTANA MODAL PARA NUEVO PROFESOR-->
     
-    
-    
     <!--VENTANA MODAL PARA ELIMINAR PROFESOR-->
-       @extends('modulos.profesores.modal-eliminar')
-      <!--/VENTANA MODAL PARA ELIMINAR PROFESOR-->
+        @include('perfilDirector.profesores.modal-eliminar')
+    <!--/VENTANA MODAL PARA ELIMINAR PROFESOR-->
      
 @endsection

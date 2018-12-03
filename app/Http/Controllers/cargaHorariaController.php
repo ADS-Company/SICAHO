@@ -62,23 +62,63 @@ class cargaHorariaController extends Controller
 
     	return view('modulos.cargaHoraria.main', compact('car','tics','meca','mantenimiento','industrial','alimetos','conta','negocios','gestionEnpresarial','agricultura','cargaHorariaTics','cargaHorariaMeca','cargaHorariaIndustrial','cargaHorariaMentenimiento','cargaHorariaAlimentos','cargaHorariaConta','cargaHorariaNegocios','cargaHorariaGestionE','cargaHorariaAgricultura'));
     }
+
+
     public function indexD(){
         $carrera=Auth::user()->estado;
         //dd($carrera);
         switch ($carrera) {
-            case 'TIC':
+            case 'Tecnologías de la Información y Comunicación':
                 $tics=Programa_educativo::where('nombreProgramaEducativo','Tecnologías de la Información y Comunicación')->first();
                 $cargahoraria= $tics->cargashorarias()->get();
                 $profesor=$cargahoraria;
                 //dd($profesor);
                 break;
-            case 'MECATRÓNICA':
+            case 'Agricultura Sustentable y Protegida':
+                $meca=Programa_educativo::where('nombreProgramaEducativo','Agricultura Sustentable y Protegida')->first();
+                $cargahoraria= $meca->cargashorarias()->get();
+                $profesor=$cargahoraria;
+                break;
+            case 'Gestión de Proyectos':
+                $tics=Programa_educativo::where('nombreProgramaEducativo','Gestión de Proyectos')->first();
+                $cargahoraria= $tics->cargashorarias()->get();
+                $profesor=$cargahoraria;
+                //dd($profesor);
+                break;
+            case 'Negocios y Gestión Empresarial':
+                $meca=Programa_educativo::where('nombreProgramaEducativo','Negocios y Gestión Empresarial')->first();
+                $cargahoraria= $meca->cargashorarias()->get();
+                $profesor=$cargahoraria;
+                break;
+            case 'Finanzas y Fiscal Contador Público':
+                $tics=Programa_educativo::where('nombreProgramaEducativo','Finanzas y Fiscal Contador Público')->first();
+                $cargahoraria= $tics->cargashorarias()->get();
+                $profesor=$cargahoraria;
+                //dd($profesor);
+                break;
+            case 'Mecatrónica':
                 $meca=Programa_educativo::where('nombreProgramaEducativo','Mecatrónica')->first();
                 $cargahoraria= $meca->cargashorarias()->get();
                 $profesor=$cargahoraria;
                 break;
+            case 'Procesos Bioalimentarios':
+                $tics=Programa_educativo::where('nombreProgramaEducativo','Procesos Bioalimentarios')->first();
+                $cargahoraria= $tics->cargashorarias()->get();
+                $profesor=$cargahoraria;
+                //dd($profesor);
+                break;
+            case 'Mantenimiento Industrial':
+                $meca=Programa_educativo::where('nombreProgramaEducativo','Mantenimiento Industrial')->first();
+                $cargahoraria= $meca->cargashorarias()->get();
+                $profesor=$cargahoraria;
+                break;
+            case 'Ingeniería Industrial':
+                $tics=Programa_educativo::where('nombreProgramaEducativo','Ingeniería Industrial')->first();
+                $cargahoraria= $tics->cargashorarias()->get();
+                $profesor=$cargahoraria;
+                //dd($profesor);
+                break;
             default:
-                # code...
                 break;
         }
         return view('perfilDirector.cargaHoraria.main', compact('carrera','profesor'));

@@ -8,9 +8,12 @@
 @section('contenidoD')
  <!--SECCIÓN DE GESTION-->
     <div id="seccionGestion" class="container">
+       <div style="text-align: center;">
+           <h4>{{ Auth::user()->estado }} </h4>
+       </div>
         <div class="row">
             <div class="col-md-8">
-            @include('modulos.asignaturas.error')
+            @include('perfilDirector.asignaturas.error')
             </div>
             <div class="col-md-4 ">
                 <div class="section_botones">
@@ -20,7 +23,6 @@
         </div>
     </div>
     <!--/SECCIÓN DE GESTION-->
-    <h2>{{ Auth::user()->username }}</h2>
     <!--SECCIÓN DE TABLA-->
       <div class="container" id="seccionTabla">
         <table class="table table-bordered" id="tableAsignaturas">
@@ -40,7 +42,7 @@
             </thead>
            
             <tbody>
-                @foreach($materias as $value)
+                @foreach($asignatura as $value)
                 <tr class="post{{$value->id}}">
                     <td>{{$value->id}}</td>
                     <td>{{$value->cuatrimestre->nombreCuatrimestre}}</td>
@@ -65,17 +67,6 @@
             </tbody>
         </table>
     </div>
-        <div class="container">
-          <div class="row justify-content-md-center">
-            <div class="col col-lg-2">
-            </div>
-            <div class="col-md-auto">
-              {{ $materias->links('pagination::Bootstrap-4') }}
-            </div>
-            <div class="col col-lg-2">
-            </div>
-          </div>
-        </div>
                <!--/SECCIÓN DE TABLA-->
             
     <!--VENTANA MODAL PARA NUEVA ASIGNATURA-->
@@ -90,7 +81,7 @@
                 </div>
                 <div class="modal-body">                 
                    <!--Form para agregar-->
-                    <form action="{{ route('GuardarAsignatura') }}" method="post">
+                    <form action="{{ route('GuardarAsignaturaD') }}" method="post">
                        {{ csrf_field() }}
                          <p class="text-muted">(*) El campo es obligatorio.</p>
                          <div class="row align-self-end">
@@ -98,7 +89,8 @@
                                  <label for="programaEducativo">(*)Programa educativo:</label>
                              </div>
                              <div class="col-md-6">
-                                  {!! Form::select('programaEducativo',$programasEducativos,null,['id'=>'programaEducativo','class'=>'form-control mt-1','placeholder'=>'Selecciona']) !!}
+                                  <input type="text" hidden id="proEdu" name="proEdu" class="form-control mt-1" required value="{{ $id->id }}" disabled>
+                                  <input type="text" id="" name="" class="form-control mt-1" required value="{{ $carrera }}" disabled>
                              </div>
                          </div>
                                <div class="row align-self-end">

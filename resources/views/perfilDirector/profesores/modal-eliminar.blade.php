@@ -9,12 +9,11 @@
         </button>
                 </div>
                 <div class="modal-body">
-                <form  method="post" action="{{ route('eliminarProfesor') }}">
+                <form  method="post" action="{{ route('eliminarProfesorD') }}">
                 {{ csrf_field() }}
                <div class="form-inline ">
-                                <input class="form-control" type="hidden" id="id" name="id" placeholder="Escriba la clave" value="" >
-                               
-                            </div>
+                    <input class="form-control" type="hidden" id="id" name="id" placeholder="Escriba la clave" value="" >    
+                </div>
                   <strong>Desea borrar la información de profesor con clave: </strong> 
                          <fieldset disabled>
                                 <input class="form-control" type="text" id="clave" name="clave" value="" >

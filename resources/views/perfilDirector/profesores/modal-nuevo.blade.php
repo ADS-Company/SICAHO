@@ -63,17 +63,13 @@
                                </div>
                                 <div class="row align-self-end">
                                    <div class="col-md-4">
-                                   <label for="">(*)Tipo de profesor:</label>
+                                   <label for="">(*)Programa educativo:</label>
                                    </div>
                                    <div class="col-md-6">
-                                   <select class="custom-select my-1 mr-sm-2 cmbNTipoProfesor" id="tipoProfesor" name="tipoProfesor" required>
-                                <option selected value="">Seleccione</option>
-                                <option value="PTC">PTC</option>
-                                <option value="PA">PA</option>
-                              </select>
-                              <div class="invalid-feedback">
-                                   Debe elegir una opción para el tipo de profesor.
-                                </div>
+                                    <input type="text" id="apellidoMaterno" name="apellidoMaterno" placeholder="apellido materno" class="form-control mt-1" required value="{{ $carrera }}" disabled>
+                                    <div class="invalid-feedback">
+                                      Debe elegir un programa educativo para el profesor.
+                                    </div>
                                    </div>
                                </div>            
                  <div class="modal-footer">
