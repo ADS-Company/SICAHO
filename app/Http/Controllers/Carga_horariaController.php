@@ -361,7 +361,7 @@ class Carga_horariaController extends Controller
     public function agregarAsignacionCompartir(Request $request){
         //obtiene y asigna el valor que trae del formulario por medio del request
         $idProfesorCompartido=$request->input('idProfesorCompartido');
-        $idProfesor=1;
+        $idProfesor=$request->input('idProfesor');
         $idProgramaEducativoElegido=$request->get('programaEducativo');
         $idEspecialidad=$request->get('especialidades');
         $idCuatrimestre=$request->get('cuatrimestres');
@@ -431,6 +431,83 @@ class Carga_horariaController extends Controller
         return back()->with('success','Los datos se han eliminado correctamente');
         
     }
+    
+       //método para agregar las actividades de un profesor
+    public function agregarActividadedCompartido(Request $request){
+        //obtiene y asigna el valor que trae del formulario por medio del request
+        $idProfesorCompartido=$request->input('idProfesorCompartido');
+        $idProfesor=$request->input('idProfesor');
+        $idProgramaEducativo=$request->get('programaEducativo');
+        $idEspecialidad=$request->get('especialidad');
+        $idCuatrimestre=$request->get('cuatrimestre');
+        $idActividad=$request->get('actividad');
+        $horasSemanales=$request->input('horasSemanales');
+        $horasCuatrimestrales=$request->input('horasCuatrimestrales');
+        //busca la carga horaria por medio de su id y lo asigna a la variable cargaHoraria
+        $cargaHorariaCompartido=Compartido::where('id',$idProfesorCompartido)->first();
+        //obtiene la cantidad de horas de carga horaria y lo asigna a canHorasDisponibles
+        $cantHorasDis=$cargaHorariaCompartido->horas_disponibles;
+        $profesorCompartido=Profesor_compartido::where('id',$idProfesor)->first();
+        $idProgramaeducativoCom=$cargaHorariaCompartido->id_programa_educativo;
+       
+        
+        $cargaHoraria=Carga_horaria_compartido::where('id_profesor',$idProfesor)->first();
+        $idCargaHoraria=$cargaHoraria->id; 
+        
+        if($idProgramaeducativoCom != $idProgramaEducativo){
+            return back()->with('status','Debe elegir el programa educativo al que esta compartido el profesor, intentelo de nuevo');
+        }
+        elseif($cantHorasDis<$horasSemanales){
+            return back()->with('status','No hay horas suficientes para la actividad');
+        }else{
+            //realiza la operación para restar las horas de la asignatura
+            $cantHorasResult=$cantHorasDis-$horasSemanales;
+            //se actualiza la carga horaria del profesor 
+            $cargaHorariaCompartido->horas_disponibles=$cantHorasResult;
+            $cargaHorariaCompartido->save();
+            //se guarda la asignacion de la asignatura
+            $actividadExtraCH=new Actividad_extra_ch;
+            $actividadExtraCH->id_carga_horaria_compartido=$cargaHoraria->id;
+            $actividadExtraCH->id_compartido=$cargaHorariaCompartido->id;
+            $actividadExtraCH->id_programa_educativo=$idProgramaEducativo;
+            $actividadExtraCH->id_especialidad=$idEspecialidad;
+            $actividadExtraCH->id_cuatrimestre=$idCuatrimestre;
+            $actividadExtraCH->id_actividad_extra=$idActividad;
+            $actividadExtraCH->horasSemanales=$horasSemanales;
+            $actividadExtraCH->horasCuatrimestrales=$horasCuatrimestrales;
+            $actividadExtraCH->save();
+            return back()->with('success','Los datos de actividad se han guardado correctamente');
+            
+            
+        }
+    }
+    
+    
+     //método para eliminar las actividades de un profesor
+    public function eliminarActividadCompartido(Request $request){
+        //se obtienen los datos pasados del form por request
+        $idProfesor=$request->input('idProfesorCompartido');
+        $idActividad=$request->input('idActividad');
+        //busca la carga horaria por medio de su id y lo asigna a la variable cargaHoraria
+        $cargaHoraria=Compartido::where('id',$idProfesor)->first();
+        $idCargaHoraria=$cargaHoraria->id;
+        //obtiene la cantidad de horas de carga horaria y lo asigna a canHorasDisponibles
+        $cantHorasDis=$cargaHoraria->horas_disponibles;
+        //busca la asignatura con ese id y lo asigna a el objeto $asignatura
+        $actividadExtraCH=Actividad_extra_ch::where('id_actividad_extra',$idActividad)->where('id_carga_horaria_compartido',$idCargaHoraria)->first();
+        //obtiene la cantidad de horas y las asigna a la variable $cantHorasSem
+        $cantHorasSem=$actividadExtraCH->horasSemanales;
+        //hace la operación para regresarle sus horas a carga horaria
+        $cantHorasResult=$cantHorasDis + $cantHorasSem;
+        $cargaHoraria->horas_disponibles=$cantHorasResult;
+        $cargaHoraria->save();
+        //busca la asignacion horas de profesor para eliminar el registro
+    
+        $actividadExtraCH->delete();
+        
+        return back()->with('success','Los datos se han eliminado correctamente');
+    }
+    
     
 }
 

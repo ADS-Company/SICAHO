@@ -203,6 +203,10 @@ Route::post('/eliminarActividadExtraCompartido','Carga_horariaController@elimina
 Route::post('/agregarAsignacionCompartir','Carga_horariaController@agregarAsignacionCompartir')->name('agregarAsignacionCompartir');
 //Ruta para eliminar asignatura a un profesor compartido a un PE
 Route::post('/eliminarAsignacionCompartido','Carga_horariaController@eliminarAsignacionCompartido')->name('eliminarAsignacionCompartido');
+Route::post('/agregarActividadedCompartido','Carga_horariaController@agregarActividadedCompartido')->name('agregarActividadedCompartido');
+Route::post('/eliminarActividadCompartido','Carga_horariaController@eliminarActividadCompartido')->name('eliminarActividadCompartido');
+
+
 
 
 
