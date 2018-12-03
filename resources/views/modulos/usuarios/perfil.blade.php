@@ -40,7 +40,7 @@
                                 <div class="col-md-6"><select class="custom-select my-1 mr-sm-2" id="rol" name="rol" value="" required>
                                 <option value="">Seleccione</option>
                                 <option value="Administrador">Administrador</option>
-                                <option value="Visitante">Visitante</option>
+                                <option value="Director">Director</option>
                               </select></div>
                             </div>
                             <div class="row">
@@ -49,8 +49,8 @@
                                </div>
                                <div class="col-md-6 ">
                                 <div><select class="custom-select my-1 mr-sm-2" id="estado" name="estado" value="" required>
-                                <option value="">Seleccione</option>
-                                <option value="Activo">Activo</option>
+                                <option value="0">Seleccione</option>
+                                <option value="Tecnologías de la Información y Comunicación">Tecnologías de la Información y Comunicación</option>
                                 <option value="Inactivo">Inactivo</option>
                                 </select></div>
                                </div>
