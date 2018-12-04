@@ -14,7 +14,7 @@ class CreateProfesorCompartidoTable extends Migration
     public function up()
     {
         Schema::create('profesor_compartido', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned()->nullable();
             $table->string('nombre');
             $table->string('clave')->unique();
@@ -32,6 +32,6 @@ class CreateProfesorCompartidoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profesorCompartido');
+        Schema::dropIfExists('profesor_compartido');
     }
 }

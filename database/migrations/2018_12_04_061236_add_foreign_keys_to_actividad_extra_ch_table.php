@@ -14,7 +14,7 @@ class AddForeignKeysToActividadExtraChTable extends Migration
     public function up()
     {
         Schema::table('actividad_extra_ch', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+           $table->engine = 'InnoDB';
             /*Modifica y agrega la llave id_actividad_extra foranea a la tabla actividad_extra_ch*/
             $table->integer('id_actividad_extra')->unsigned()->nullable();
             $table->foreign('id_actividad_extra')->references('id')->on('actividad_extra')->onDelete('set null');

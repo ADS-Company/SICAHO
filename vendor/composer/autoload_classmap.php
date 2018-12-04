@@ -12,6 +12,8 @@ return array(
     'App\\Asignatura' => $baseDir . '/app/Asignatura.php',
     'App\\Asignatura_cuatrimestre' => $baseDir . '/app/Asignatura_cuatrimestre.php',
     'App\\Carga_horaria' => $baseDir . '/app/Carga_horaria.php',
+    'App\\Carga_horaria_compartido' => $baseDir . '/app/Carga_horaria_compartido.php',
+    'App\\Compartido' => $baseDir . '/app/Compartido.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Cuatrimestre' => $baseDir . '/app/Cuatrimestre.php',
     'App\\Cuatrimestre_especialidad' => $baseDir . '/app/Cuatrimestre_especialidad.php',

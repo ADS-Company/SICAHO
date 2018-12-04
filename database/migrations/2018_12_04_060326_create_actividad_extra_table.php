@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProgramaEducativoTable extends Migration
+class CreateActividadExtraTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateProgramaEducativoTable extends Migration
      */
     public function up()
     {
-        Schema::create('programa_educativo', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+        Schema::create('actividad_extra', function (Blueprint $table) {
+             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned()->nullable();
             $table->timestamps();
-            $table->string('nombreProgramaEducativo');
+            $table->string('nombre');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateProgramaEducativoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('programaEducativo');
+        Schema::dropIfExists('actividad_extra');
     }
 }

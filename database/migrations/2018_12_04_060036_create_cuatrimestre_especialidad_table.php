@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAsignaturaCuatrimestreTable extends Migration
+class CreateCuatrimestreEspecialidadTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAsignaturaCuatrimestreTable extends Migration
      */
     public function up()
     {
-        Schema::create('asignatura_cuatrimestre', function (Blueprint $table) {
+        Schema::create('cuatrimestre_especialidad', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned()->nullable();
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateAsignaturaCuatrimestreTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asignatura_cuatrimestre');
+        Schema::dropIfExists('cuatrimestre_especialidad');
     }
 }

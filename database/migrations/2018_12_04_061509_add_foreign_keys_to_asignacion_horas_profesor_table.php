@@ -14,7 +14,7 @@ class AddForeignKeysToAsignacionHorasProfesorTable extends Migration
     public function up()
     {
         Schema::table('asignacion_horas_profesor', function (Blueprint $table) {
-             /*Modifica y agrega la llave id_carga_horaria foranea a la tabla profesor compartido*/
+            /*Modifica y agrega la llave id_carga_horaria foranea a la tabla profesor compartido*/
             $table->integer('id_carga_horaria')->unsigned()->nullable();
             $table->foreign('id_carga_horaria')->references('id')->on('carga_horaria')->onDelete('cascade');
             /*Modifica y agrega la llave id_asignaturaforanea a la tabla asignatura*/
@@ -35,7 +35,6 @@ class AddForeignKeysToAsignacionHorasProfesorTable extends Migration
              /*Modifica y agrega la llave id_compartido foranea a la tabla programa_educativo*/
             $table->integer('id_compartido')->unsigned()->nullable();
             $table->foreign('id_compartido')->references('id')->on('compartido')->onDelete('set null');
-            
         });
     }
 

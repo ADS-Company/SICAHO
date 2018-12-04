@@ -14,7 +14,7 @@ class AddForeignKeysToAsignaturaTable extends Migration
     public function up()
     {
         Schema::table('asignatura', function (Blueprint $table) {
-             $table->engine = 'InnoDB';
+            $table->engine = 'InnoDB';
               /*Modifica y agrega la llave id_cuatrimestre foranea a la tabla asignatura_cuatrimestre*/
             $table->integer('id_cuatrimestre')->unsigned()->nullable();
             $table->foreign('id_cuatrimestre')->references('id')->on('cuatrimestre')->onDelete('set null');

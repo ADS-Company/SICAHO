@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignKeyCompartidoTable extends Migration
+class AddForeignKeysToCompartidoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,6 @@ class AddForeignKeyCompartidoTable extends Migration
     public function up()
     {
         Schema::table('compartido', function (Blueprint $table) {
-            //
             $table->engine = 'InnoDB';
              /*Modifica y agrega la llave id_profesor_compartido foranea a la tabla profesor compartido*/
              $table->integer('id_profesor_compartido')->unsigned()->nullable();
@@ -33,8 +32,7 @@ class AddForeignKeyCompartidoTable extends Migration
     public function down()
     {
         Schema::table('compartido', function (Blueprint $table) {
-            //
-            /*hace un drop a la llave foranea id_profesor_compartido
+           /*hace un drop a la llave foranea id_profesor_compartido
             si es que ya existe*/
             $table->dropForeign('id_profesor_compartido');
             $table->dropColumn('id_profesor_compartido');

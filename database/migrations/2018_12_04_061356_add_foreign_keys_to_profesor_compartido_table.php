@@ -14,7 +14,7 @@ class AddForeignKeysToProfesorCompartidoTable extends Migration
     public function up()
     {
         Schema::table('profesor_compartido', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+             $table->engine = 'InnoDB';
             /*Modifica y agrega la llave id_programa_educativo foranea a la tabla profesor compartido*/
             $table->integer('id_programa_educativo')->unsigned()->nullable();
             $table->foreign('id_programa_educativo')->references('id')->on('programa_educativo')->onDelete('set null');

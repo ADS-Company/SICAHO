@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActividadExtraChTable extends Migration
+class CreateAsignacionHorasProfesorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateActividadExtraChTable extends Migration
      */
     public function up()
     {
-        Schema::create('actividad_extra_ch', function (Blueprint $table) {
+        Schema::create('asignacion_horas_profesor', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned()->nullable();
             $table->timestamps();
-            $table->integer('horasSemanales');
-             $table->integer('horasCuatrimestrales');
-           
         });
     }
 
@@ -30,6 +27,6 @@ class CreateActividadExtraChTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('actividadExtraCH');
+        Schema::dropIfExists('asignacion_horas_profesor');
     }
 }
