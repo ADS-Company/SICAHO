@@ -11,7 +11,7 @@ para marcar a la opción de profesores-->
     <div id="seccionAgregarHoras">
        <div class="row">
           <div class="col-md-12"><h2>PERFIL DE PROFESOR</h2></div>
-          <div class="col-md-12"> <h2>PERTENECE A: {{$profesor->programaEducativo->nombreProgramaEducativo}}</h2></div>
+          <div class="col-md-12"> <h2 class="tituloCedido">PERTENECE A: {{$profesor->programaEducativo->nombreProgramaEducativo}}</h2></div>
        </div>
         <div class="row">
             <div class="col-md-8">
@@ -193,7 +193,7 @@ para marcar a la opción de profesores-->
      <div id="seccionCompartido">
      <!--SECCIÓN INFORMACION COMPARTIDO-->
      <div class="row">
-          <div class="col-md-12"> <h2>CEDIDO A: {{$compartido->programaEducativo->nombreProgramaEducativo}}</h2></div>
+          <div class="col-md-12"><h2 class="tituloCedido">CEDIDO A: {{$compartido->programaEducativo->nombreProgramaEducativo}}</h2></div>
        </div>
      </div>
      <div class="row">

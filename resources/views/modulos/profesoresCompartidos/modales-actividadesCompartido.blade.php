@@ -13,7 +13,7 @@
                        {{ csrf_field() }}
                       <input class="form-control" type="hidden" id="idProfesor" name="idProfesor" placeholder="Escriba la clave" value="{{$profesor->id}}" >
                       @if(isset($compartido))
-                      <input class="form-control" type="text" id="idProfesorCompartido" name="idProfesorCompartido" placeholder="Escriba la clave" value="">
+                      <input class="form-control" type="hidden" id="idProfesorCompartido" name="idProfesorCompartido" placeholder="Escriba la clave" value="">
                       @endif
                        <p class="text-muted">(*) El campo es obligatorio.</p>
                               
@@ -93,7 +93,7 @@
                        <!--id de profesor-->
                       <input class="form-control" type="hidden" id="idProfesor" name="idProfesor" placeholder="Escriba la clave" value="{{$profesor->id}}" >
                       @if(isset($compartido))
-                      <input class="form-control" type="text" id="idProfesorCompartido" name="idProfesorCompartido" placeholder="Escriba la clave" value="">
+                      <input class="form-control" type="hidden" id="idProfesorCompartido" name="idProfesorCompartido" placeholder="Escriba la clave" value="">
                       @endif
                        <!--id de asignatura-->
                         <input class="form-control" type="hidden" id="idActividad" name="idActividad" placeholder="Escriba la clave" value="" >

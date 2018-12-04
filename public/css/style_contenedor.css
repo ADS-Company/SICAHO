@@ -331,6 +331,9 @@ box-shadow:7px 7px 5px #112;
 #seccionCompartido{
     margin-top: 15px;
 }
+.tituloCedido{
+    color: #70120C;
+}
 /*fin-estilo para la seccion de perfil profesor*/
 
 /*inicio-estilo de imagenes catalogo*/

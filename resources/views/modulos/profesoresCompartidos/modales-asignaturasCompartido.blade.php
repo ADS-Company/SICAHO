@@ -12,7 +12,7 @@
                     <form method="post" action="{{route('agregarAsignacionCompartir')}}">
                        {{ csrf_field() }}
                        <input class="form-control" type="hidden" id="idProfesor" name="idProfesor" placeholder="Escriba la clave" value="{{$profesor->id}}" >
-                      <input class="form-control" type="text" id="idProfesorCompartido" name="idProfesorCompartido" placeholder="Escriba la clave" value="" >
+                      <input class="form-control" type="hidden" id="idProfesorCompartido" name="idProfesorCompartido" placeholder="Escriba la clave" value="" >
                        <p class="text-muted">(*) El campo es obligatorio.</p>
                         <div class="row align-self-end">
                             <div class="col-md-4">
@@ -72,7 +72,7 @@
                        {{ csrf_field() }}
                        <!--id de profesor-->
                       <input class="form-control" type="hidden" id="idProfesor" name="idProfesor" placeholder="Escriba la clave" value="{{$profesor->id}}" >
-                      <input class="form-control" type="text" id="idProfesorCompartido" name="idProfesorCompartido" placeholder="Escriba la clave" value="">s
+                      <input class="form-control" type="hidden" id="idProfesorCompartido" name="idProfesorCompartido" placeholder="Escriba la clave" value="">s
                        <!--id de asignatura-->
                         <input class="form-control" type="hidden" id="idAsignatura" name="idAsignatura" placeholder="Escriba la clave" value="" >
                                <div class="row">
