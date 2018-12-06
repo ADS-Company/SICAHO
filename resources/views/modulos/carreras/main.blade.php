@@ -40,7 +40,7 @@
                     <td>{{ $car->id }}</td>  
                     <td>{{ $car->nombreEspecialidad }}</td>
                     <td>{{ $car->acronimo }}</td>
-                    <td>{{ $car->nombreProgramaEducativo }}</td>
+                    <td>{{ $car->programaEducativo->nombreProgramaEducativo }}</td>
                     <td>
                     <a data-target="#Modal-editar-{{$car->id}}" data-toggle="modal"><button class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
                     </td>
