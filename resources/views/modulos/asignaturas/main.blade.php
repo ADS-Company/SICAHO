@@ -65,17 +65,6 @@
             </tbody>
         </table>
     </div>
-        <div class="container">
-          <div class="row justify-content-md-center">
-            <div class="col col-lg-2">
-            </div>
-            <div class="col-md-auto">
-              {{ $materias->links('pagination::Bootstrap-4') }}
-            </div>
-            <div class="col col-lg-2">
-            </div>
-          </div>
-        </div>
                <!--/SECCIÓN DE TABLA-->
             
     <!--VENTANA MODAL PARA NUEVA ASIGNATURA-->
