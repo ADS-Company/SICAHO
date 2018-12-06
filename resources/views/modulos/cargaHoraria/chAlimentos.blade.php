@@ -29,17 +29,6 @@
                     </tbody>
                     
                 </table>
-                    <div class="container">
-                      <div class="row justify-content-md-center">
-                        <div class="col col-lg-2">
-                        </div>
-                        <div class="col-md-auto">
-                           {{ $cargaHorariaAlimentos->links('pagination::Bootstrap-4') }}
-                        </div>
-                        <div class="col col-lg-2">
-                        </div>
-                      </div>
-                    </div>
               </div>
 
               <br><br>
@@ -73,15 +62,4 @@
                     <p>No hay ningún dato...</p>
                     @endforelse
                 </table>
-                    <div class="container">
-                      <div class="row justify-content-md-center">
-                        <div class="col col-lg-2">
-                        </div>
-                        <div class="col-md-auto">
-                           {{ $cargaHorariaAlimentos->links('pagination::Bootstrap-4') }}
-                        </div>
-                        <div class="col col-lg-2">
-                        </div>
-                      </div>
-                    </div>
               </div>

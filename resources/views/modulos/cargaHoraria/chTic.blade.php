@@ -28,17 +28,6 @@
                     </tbody>
                     
                 </table>
-                <div class="container">
-                      <div class="row justify-content-md-center">
-                        <div class="col col-lg-2">
-                        </div>
-                        <div class="col-md-auto">
-                           {{ $cargaHorariaTics->links('pagination::Bootstrap-4') }}
-                        </div>
-                        <div class="col col-lg-2">
-                        </div>
-                      </div>
-                    </div>
               </div>
               <br><br>
               <div class="card-body">
@@ -74,15 +63,4 @@
                     
                     
                 </table>
-                <div class="container">
-                      <div class="row justify-content-md-center">
-                        <div class="col col-lg-2">
-                        </div>
-                        <div class="col-md-auto">
-                           {{ $cargaHorariaTics->links('pagination::Bootstrap-4') }}
-                        </div>
-                        <div class="col col-lg-2">
-                        </div>
-                      </div>
-                    </div>
               </div>
