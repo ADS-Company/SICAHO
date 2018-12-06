@@ -90,7 +90,7 @@ Route::post('/modalEditAsignatura/{id}', 'crudAsignaturas@editarAsignatura')->na
 //Ruta para eliminar una asignaruta
 Route::DELETE('/destroyAsignatura/{id}', 'crudAsignaturas@destroyAsignatura')->name('destroyAsignatura');
 //Ruta para mostrar tabla de asignaturas
-Route::get('/asignaturas', 'crudAsignaturas@index')->middleware('auth');
+Route::get('/asignaturass', 'crudAsignaturas@index')->middleware('auth');
 //Ruta para cmbiar select dinamico de Especialidades Para modal Nueva Asignatura
 Route::get('/json-Carreras', 'crudAsignaturas@especialidades');
 //Ruta para cmbiar select dinamico de Cuatrimestre Para modal Nueva Asignatura

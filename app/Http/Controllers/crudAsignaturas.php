@@ -29,6 +29,7 @@ use App\Http\Requests\LoginRequest;
 class crudAsignaturas extends Controller{
 	 //Metodo para mostrar los datos de la asignatura
 	public function index(){
+        dd('que onda');
 		$programasEducativos=Programa_educativo::orderBy('nombreProgramaEducativo','asc')->pluck('nombreProgramaEducativo','id');
 		$consulta = DB::table('carga_horaria')
 		->join('profesor','profesor.id','=','carga_horaria.id_profesor')
