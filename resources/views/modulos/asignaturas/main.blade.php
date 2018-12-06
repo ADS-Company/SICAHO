@@ -50,9 +50,6 @@
                     <td>{{ $value->programaEducativo->nombreProgramaEducativo }}</td>
                     <td>{{ $value->especialidad->nombreEspecialidad }}</td>
                     <td>
-                        <!--<a href="route{{'mostrarModal', $value->id}}"  class="show-modal btn btn-info btn-sm" data-id="{{$value->id}}" data-title="{{$value->nombreAsignatura}}" data-body="{{$value->horasSemanales}}">
-                          <i class="fa fa-eye"></i>
-                        </a>-->
                         <a data-target="#Modal-editar-{{$value->id}}" data-toggle="modal"><button class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
                     </td>
                     <td>
