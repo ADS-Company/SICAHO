@@ -39,7 +39,7 @@ class crudAsignaturas extends Controller{
 	    //return view('modulos.asignaturas.main',compact('materias','programasEducativos'));
         return view('modulos.asignaturas.main',[
         'materias'=>$materias,
-        'ProgramasEducativos'=>$programasEducativos,
+        'programasEducativos'=>$programasEducativos,
         ]);
 	}
 
