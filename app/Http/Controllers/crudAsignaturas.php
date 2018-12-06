@@ -36,7 +36,7 @@ class crudAsignaturas extends Controller{
 		->get(); 'consulta',*/
 
 	    $materias = Asignatura::paginate(10);
-	    //dd($materias);
+	    dd($materias);
 	    //return view('modulos.asignaturas.main',compact('materias','programasEducativos'));
         return view('modulos.asignaturas.main',[
         'materias'=>$materias,
