@@ -35,7 +35,7 @@ class crudAsignaturas extends Controller{
 		->join('programa_educativo','programa_educativo.id','=','carga_horaria.id_programa_educativo')
 		->get(); 'consulta',*/
 
-	    $materias = Asignatura::paginate(10);
+	    $materias = Asignatura::all();
 	    dd($materias);
 	    //return view('modulos.asignaturas.main',compact('materias','programasEducativos'));
         return view('modulos.asignaturas.main',[
