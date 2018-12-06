@@ -20,9 +20,10 @@ class crudCarrearas extends Controller
 
     	$espe = Especialidad::get();
     	//dd($espe);
-    	$carreras = DB::table('especialidad')->orderBy('id', 'Desc')->paginate(10);
+    	$carreras= Especialidad::paginate(10); 
+            //= DB::table('especialidad')->orderBy('id', 'Desc')->paginate(10);
 
-    	$carreras = DB::table('especialidad')->join('Programa_educativo','Programa_educativo.id', '=', 'especialidad.id_programa_educativo')->select('especialidad.id','especialidad.created_at','especialidad.nombreEspecialidad','especialidad.acronimo','especialidad.id_programa_educativo','nombreProgramaEducativo')->orderBy('id', 'Desc')->paginate(10);
+    	/*$carreras = DB::table('especialidad')->join('Programa_educativo','Programa_educativo.id', '=', 'especialidad.id_programa_educativo')->select('especialidad.id','especialidad.created_at','especialidad.nombreEspecialidad','especialidad.acronimo','especialidad.id_programa_educativo','nombreProgramaEducativo')->orderBy('id', 'Desc')->paginate(10);
     	//dd($carreras);*/
 	    return view('modulos.carreras.main',compact('carreras','pEducativo','espe'));
     }
