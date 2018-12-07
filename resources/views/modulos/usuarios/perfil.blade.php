@@ -25,17 +25,17 @@
                          {{ csrf_field() }}
                             <p class="text-muted">(*) El campo es obligatorio.</p>
                              <input type="hidden" id="idUsuario" name="idUsuario" value="{{$usuario->id}}" class="form-control">
-                             <div class="row align-self-end">
-                                   <div class="col-md-4 "><label for="nombre">(*)Nombre:</label></div>
+                             <div class="row">
+                                   <div class="col-md-6"><label for="nombre">(*)Nombre:</label></div>
                                    <div class="col-md-6"><input type="text" id="nombre" class="form-control txtNusuario" name="nombre" placeholder="Escriba el nombre" required></div>
                                </div>
-                               <div class="row align-self-end">
-                                   <div class="col-md-4 "><label for="apellidos">(*)Apellidos:</label></div>
+                               <div class="row">
+                                   <div class="col-md-6"><label for="apellidos">(*)Apellidos:</label></div>
                                    <div class="col-md-3"><input type="text" id="apellidoP" class="form-control txtNusuario" name="apellidoP" placeholder="Apellido paterno" required></div><div class="col-md-3"><input type="text" id="apellidoM" class="form-control txtNusuario" name="apellidoM" placeholder="Apellido materno" required></div>
                                </div>
-                               <div class="row align-self-end">
-                                   <div class="col-md-4 "><label for="email">(*)Correo electronico:</label></div>
-                                   <div class="col-md-6"><input type="text" id="email" class="form-control txtNusuario" name="email" placeholder="Escriba su email" required></div>
+                               <div class="row">
+                                   <div class="col-md-6"><label for="email">(*)Correo electronico:</label></div>
+                                   <div class="col-md-6 "><input type="text" id="email" class="form-control txtNusuario" name="email" placeholder="Escriba su email" required></div>
                                </div>
                                 <div class="row ">
                                     <div class="col-md-6"> <label for="usuario">(*)Nombre de usuario:</label></div>
