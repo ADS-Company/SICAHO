@@ -85,6 +85,18 @@
                     <form action="{{route('nuevoUsuario')}}" method="POST" >
                         {{ csrf_field() }}
                               <p class="text-muted">(*) El campo es obligatorio.</p>
+                              <div class="row align-self-end">
+                                   <div class="col-md-4 "><label for="nombre">(*)Nombre:</label></div>
+                                   <div class="col-md-6"><input type="text" id="nombre" class="form-control txtNusuario" name="nombre" placeholder="Escriba el nombre" required></div>
+                               </div>
+                               <div class="row align-self-end">
+                                   <div class="col-md-4 "><label for="apellidos">(*)Apellidos:</label></div>
+                                   <div class="col-md-3"><input type="text" id="apellidoP" class="form-control txtNusuario" name="apellidoP" placeholder="Apellido paterno" required></div><div class="col-md-3"><input type="text" id="apellidoM" class="form-control txtNusuario" name="apellidoM" placeholder="Apellido materno" required></div>
+                               </div>
+                               <div class="row align-self-end">
+                                   <div class="col-md-4 "><label for="email">(*)Correo electronico:</label></div>
+                                   <div class="col-md-6"><input type="text" id="email" class="form-control txtNusuario" name="email" placeholder="Escriba su email" required></div>
+                               </div>
                                <div class="row align-self-end">
                                    <div class="col-md-4 "><label for="usuario">(*)Nombre usuario:</label></div>
                                    <div class="col-md-6"><input type="text" id="usuario" class="form-control txtNusuario" name="usuario" placeholder="Escriba el usuario" required></div>
@@ -102,22 +114,23 @@
                                         <label for="rol">(*)Rol:</label>
                                    </div>
                                    <div class="col-md-6">
-                                       <select class="custom-select my-1 mr-sm-2" id="rol" name="rol" required>
-                                <option value="">Seleccione</option>
-                                <option value="Administrador">Administrador</option>
-                                <option value="Visitante">Visitante</option>
-                              </select>
+                                        <select class="custom-select my-1 mr-sm-2" id="rol" name="rol" onchange="habilitar(this.value);" required>
+                                          <option value="0">Seleccione</option>
+                                          <option value="Administrador">Administrador</option>
+                                          <option value="Director">Director</option>
+                                        </select>
                                    </div>
                                </div>
                                <div class="row">
                                    <div class="col-md-4">
-                                        <label for="estado">(*)Estado:</label>
+                                        <label for="estado">(*)Programa educativo:</label>
                                    </div>
                                    <div class="col-md-6">
                                        <select class="custom-select my-1 mr-sm-2" id="estado" name="estado" required>
                                      <option value="">Seleccione</option>
-                                     <option value="Activo">Activo</option>
-                                     <option value="Inactivo">Inactivo</option>
+                                     @foreach($proEd as $pe)
+                                      <option value="{{ $pe->id }}">{{ $pe->nombreProgramaEducativo }}</option>
+                                      @endforeach
                                    </select>
                                    </div>
                                </div>
@@ -164,4 +177,22 @@
         </div>
     </div>
     <!--/VENTANA MODAL PARA ELIMINAR USUARIO-->
+
+      <script>
+    function habilitar(value)
+    {
+      if (value=="0" || value==true) {
+        document.getElementById("estado").disabled=true;
+        document.getElementById("rol").disabled=true;
+      }else if(value=="Administrador" || value==true)
+      {
+        // habilitamos
+        document.getElementById("estado").disabled=true;
+      }else if(value=="Director" || value==false){
+        // deshabilitamos
+        document.getElementById("estado").disabled=false;
+      }
+    }
+  </script>
+
 @endsection

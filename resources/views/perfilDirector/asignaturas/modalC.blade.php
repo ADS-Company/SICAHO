@@ -9,7 +9,7 @@
         </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/modalEditAsignatura/{$value->id}'" method="POST">
+                    <form action="/modalEditAsignaturaD/{$value->id}'" method="POST"> 
                         {{ method_field('POST') }}
                         {{ csrf_field() }}
                         <input type="text" name="clave" id="clave" value="{{$value->id}}" hidden="true">

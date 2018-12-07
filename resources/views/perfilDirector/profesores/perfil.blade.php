@@ -58,11 +58,7 @@ para marcar a la opción de profesores-->
                 <tr>
                    <td>{{$profesor->id}}</td>
                    <td>{{$profesor->clave}}</td>
-                   @if(isset($cargaHoraria))
-                   <td>{{$cargaHoraria->programaEducativo->nombreProgramaEducativo}}</td>
-                   @else
-                   <td>Aún no se agrega</td>
-                   @endif
+                   <td>{{$profesor->programaEducativo->nombreProgramaEducativo}}</td>
                    <td>{{$profesor->nombre}}</td>
                    <td>{{$profesor->apellidoPaterno}}</td>
                    <td>{{$profesor->apellidoMaterno}}</td>   
@@ -184,15 +180,15 @@ para marcar a la opción de profesores-->
     <!--Sección para asignar actividades extra-->
     
     <!--MODAL PARA AGREGAR HORAS DE PROFESOR-->
-    @include('modulos.profesores.modal-horas')
+    @include('perfilDirector.profesores.modal-horas')
     <!--/MODAL PARA AGREGAR HORAS DE PROFESOR-->
     
     <!--MODALES PARA ASIGNATURAS DE PROFESOR-->
-    @include('modulos.profesores.modales-asignatura')
+    @include('perfilDirector.profesores.modales-asignatura')
     <!--/MODAL PARA ASIGNATURAS DE PROFESOR-->
     
      <!--MODALES PARA ACTIVIDADES DE PROFESOR-->
-    @include('modulos.profesores.modales-actividad')
+    @include('perfilDirector.profesores.modales-actividad')
     <!--/MODAL PARA ACTIVIDADES DE PROFESOR-->
 @endsection
 </div>

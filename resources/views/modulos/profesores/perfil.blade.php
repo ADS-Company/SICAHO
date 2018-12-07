@@ -58,7 +58,7 @@ para marcar a la opción de profesores-->
                 <tr>
                    <td>{{$profesor->id}}</td>
                    <td>{{$profesor->clave}}</td>
-                   <td>{{$profesor->programaEducativo->nombreProgramaEducativo}}</td>
+                   <td>{{$profesor->nombreProgramaEducativo}}</td>
                    <td>{{$profesor->nombre}}</td>
                    <td>{{$profesor->apellidoPaterno}}</td>
                    <td>{{$profesor->apellidoMaterno}}</td>   

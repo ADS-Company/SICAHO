@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
 
 
-class crudAsignaturas extends Controller{
+class crudAsignaturas extends Controller{ 
 	 //Metodo para mostrar los datos de la asignatura
 	public function index(){
 		$programasEducativos=Programa_educativo::orderBy('nombreProgramaEducativo','asc')->pluck('nombreProgramaEducativo','id');
@@ -79,33 +79,45 @@ class crudAsignaturas extends Controller{
 
 	//Metodo para guardar los datos de la ventana modal nueva asignatura
 	public function store(Request $request){
-        try{
-		$rules = [ 
+		    	//Se obtiene el id del programa educativo al que pertenece el profesor
+    	$carrera=Auth::user()->estado;
+        $programasEducativos=Programa_educativo::where('nombreProgramaEducativo',$carrera)->first();
+        $idCarrera=$programasEducativos->id;
+        //Obtener el id del programa educativo que selecciona 
+        $idPro=$request->get('programaEducativo');
+        //try{
+		/*$rules = [ 
 			'programaEducativo'=> 'required',
 			'especialidad'=> 'required',
 			'cuatrimestre'=> 'required',
         	'NombreAsignatura' => 'required|max:50',
             'HorasSemanales' => 'required|max:2',
             'HorasCuatrimestre' => 'required|max:4',
-    	];
+    	];*/
  
-    	$this->validate($request, $rules);
-    	// aquí va el procesamiento de los datos
- 		//se crea una nueva asignatura
-		$Asignatura =  new Asignatura;
-		$Asignatura->id_programa_educativo = $request->get('programaEducativo');
-		$Asignatura->id_especialidad = $request->get('especialidad');
-		$Asignatura->id_cuatrimestre = $request->get('cuatrimestre');
-		$Asignatura->nombreAsignatura = $request->input('NombreAsignatura');
-		$Asignatura->horasSemanales = $request->input('HorasSemanales');
-		$Asignatura->horasCuatrimestrales = $request->input('HorasCuatrimestre');
-		//Se guardan los datos
-		$Asignatura->save();
-		//Se recarga a la misma pagina ya con el dato ingresado
-		return back()->with('message','Los datos se han guardado correctamente.');
-        }catch(QueryException $ex){
-          return back()->with('error','Algunos datos no se han guardado correctamente, por favor intente de nuevo.');  
+    	//$this->validate($request, $rules);
+        //Hacemos la condicion para que revise si la opcion que selecciono es la correcta
+        if ($idCarrera==$idPro) {
+        	// aquí va el procesamiento de los datos
+	 		//se crea una nueva asignatura
+			$Asignatura =  new Asignatura;
+			$Asignatura->id_programa_educativo = $request->get('programaEducativo');
+			$Asignatura->id_especialidad = $request->get('especialidad');
+			$Asignatura->id_cuatrimestre = $request->get('cuatrimestre');
+			$Asignatura->nombreAsignatura = $request->input('NombreAsignatura');
+			$Asignatura->horasSemanales = $request->input('HorasSemanales');
+			$Asignatura->horasCuatrimestrales = $request->input('HorasCuatrimestre');
+			//Se guardan los datos
+			$Asignatura->save();
+			//Se recarga a la misma pagina ya con el dato ingresado
+			return back()->with('message','Los datos se han guardado correctamente.');
+	        /*}catch(QueryException $ex){
+	          return back()->with('error','Algunos datos no se han guardado correctamente, por favor intente de nuevo.');  
+	        }*/
+        }else{
+        	return back()->with('status','Debe elegir el programa educativo al que pertenece el profesor, intentelo de nuevo');
         }
+    	
 	}
 
 
@@ -167,14 +179,82 @@ class crudAsignaturas extends Controller{
 
 
 	
-	
+	//Metodo para mostrar datos para un solo directivo
   	public function indexD(){
+  		$programasEducativos=Programa_educativo::orderBy('nombreProgramaEducativo','asc')->pluck('nombreProgramaEducativo','id');
+		$consulta = DB::table('carga_horaria')
+		->join('profesor','profesor.id','=','carga_horaria.id_profesor')
+		->join('programa_educativo','programa_educativo.id','=','carga_horaria.id_programa_educativo')
+		->get();
+
   		$carrera=Auth::user()->estado;
-	    $programasEducativos=Programa_educativo::where('nombreProgramaEducativo',$carrera)->first();
-	    $idCarrera=$programasEducativos->id;
+	    $programasEducativoss=Programa_educativo::where('nombreProgramaEducativo',$carrera)->first();
+	    $idCarrera=$programasEducativoss->id;
 	    $id=Programa_educativo::where('id',$idCarrera)->select('id')->first();
 		$asignatura= Asignatura::where('id_programa_educativo',$idCarrera)->get();
 	    //dd($id);
-	    return view('perfilDirector.asignaturas.main',compact('asignatura','carrera','programasEducativos','idCarrera','id'));
+	    return view('perfilDirector.asignaturas.main',compact('asignatura','carrera','programasEducativos','idCarrera'));
   	}
+    //Metodo para guardar los datos de la ventana modal nueva asignatura
+  	public function guardarD(Request $request){
+		//Se obtiene el id del programa educativo al que pertenece el profesor
+    	$carrera=Auth::user()->estado;
+        $programasEducativos=Programa_educativo::where('nombreProgramaEducativo',$carrera)->first();
+        $idCarrera=$programasEducativos->id;
+        //Obtener el id del programa educativo que selecciona 
+        $idPro=$request->get('programaEducativo');
+	     //Hacemos la condicion para que revise si la opcion que selecciono es la correcta
+	     if ($idCarrera==$idPro) {
+        	// aquí va el procesamiento de los datos, se crea una nueva asignatura
+			$Asignatura =  new Asignatura;
+			$Asignatura->id_programa_educativo = $request->get('programaEducativo');
+			$Asignatura->id_especialidad = $request->get('especialidad');
+			$Asignatura->id_cuatrimestre = $request->get('cuatrimestre');
+			$Asignatura->nombreAsignatura = $request->input('NombreAsignatura');
+			$Asignatura->horasSemanales = $request->input('HorasSemanales');
+			$Asignatura->horasCuatrimestrales = $request->input('HorasCuatrimestre');
+			//Se guardan los datos
+			$Asignatura->save();
+			//Se recarga a la misma pagina ya con el dato ingresado
+			return back()->with('message','Los datos se han guardado correctamente.');
+        }else{
+        	return back()->with('status','Debe elegir el programa educativo al que pertenece el profesor, intentelo de nuevo');
+        }
+    	
+	}
+    //Metodo para Editar los datos de la modal editarAsignatura
+	public function editarAsignaturaD(Request $request, $id){
+		//Se obtiene el id del programa educativo al que pertenece el profesor
+
+		$id = $request->input('clave');
+		$idAsignatura=Asignatura::where('id',$id)->first();
+		$asignatura=$idAsignatura->id_programa_educativo;
+
+		$idCarrera=$request->get('programaEducativo');
+		if ($asignatura==$idCarrera) {
+			$programaEduc = $request->get('programaEducativo');
+			$especialidad = $request->get('especialidad');
+			$cuatri = $request->get('cuatrimestre');
+			$nombreAsignatura = $request->input('nombreAsignatura');
+			$horasSemanales = $request->input('HorasSemanales');
+			$horasCuatrimestrales = $request->input('HorasCuatrimestre');
+
+			$asignatura = Asignatura::find($id);
+			$asignatura->id_programa_educativo = $programaEduc;
+			$asignatura->id_especialidad = $especialidad;
+			$asignatura->id_cuatrimestre = $cuatri;
+			$asignatura->nombreAsignatura = $nombreAsignatura;
+			$asignatura->horasSemanales = $horasSemanales;
+			$asignatura->horasCuatrimestrales = $horasCuatrimestrales;
+            //dd($asignatura);
+			$asignatura->save();
+
+			return back()->with('message','Los datos se han guardado correctamente');
+		}else{
+			return back()->with('estatus','Debe elegir el programa educativo al que pertenece el profesor, intentelo de nuevo');
+		}
+		
+	}
+    
+
 }

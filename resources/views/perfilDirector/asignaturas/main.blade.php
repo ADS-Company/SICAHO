@@ -61,8 +61,8 @@
                         <a data-target="#Modal-Eliminar-{{$value->id}}" data-toggle="modal"><button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></a>
                     </td>
                 </tr>
-                @include('modulos.asignaturas.modalEliminar')
-                @include('modulos.asignaturas.modalC')
+                @include('perfilDirector.asignaturas.modalEliminar')
+                @include('perfilDirector.asignaturas.modalC')
                 @endforeach
             </tbody>
         </table>
@@ -89,8 +89,7 @@
                                  <label for="programaEducativo">(*)Programa educativo:</label>
                              </div>
                              <div class="col-md-6">
-                                  <input type="text" hidden id="proEdu" name="proEdu" class="form-control mt-1" required value="{{ $id->id }}" disabled>
-                                  <input type="text" id="" name="" class="form-control mt-1" required value="{{ $carrera }}" disabled>
+                                  {!! Form::select('programaEducativo',$programasEducativos,null,['id'=>'programaEducativo','class'=>'form-control mt-1','placeholder'=>'Selecciona']) !!}
                              </div>
                          </div>
                                <div class="row align-self-end">

@@ -13,6 +13,10 @@ use App\Asignatura_cuatrimestre;
 use App\Asignatura;
 use App\Compartido;
 use App\Actividad_extra_ch;
+use App\Programa_educativo;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\LoginRequest;
+
 //instacia para el error de sql
 use Illuminate\Database\QueryException; 
 class Carga_horariaController extends Controller
@@ -48,28 +52,34 @@ class Carga_horariaController extends Controller
         $cargaHoraria=Carga_horaria::where('id_profesor',$idProfesor)->first();
         //obtiene la cantidad de horas de carga horaria y lo asigna a canHorasDisponibles
         $cantHorasDis=$cargaHoraria->horasDisponibles;
-        
-        //condición si las horasDisponibles son menor que la cantHorasSem
-        if($cantHorasDis<$cantHorasSem){
-            return back()->with('status','No hay horas suficientes para la asignatura');
+        //buscar el programa educativo del profesor
+        $idpro=Profesor::where('id',$idProfesor)->first();
+        $programaEdu=$idpro->id_programa_educativo;
+        //Condicion para que elija el programa educativo correcto
+        if ($idProgramaEducativo == $programaEdu) {
+            //condición si las horasDisponibles son menor que la cantHorasSem
+            if($cantHorasDis<$cantHorasSem){
+                return back()->with('status','No hay horas suficientes para la asignatura');
+            }else{
+                //realiza la operación para restar las horas de la asignatura
+                $cantHorasResult=$cantHorasDis-$cantHorasSem;
+                //se actualiza la carga horaria del profesor 
+                $cargaHoraria->horasDisponibles=$cantHorasResult;
+                $cargaHoraria->save();
+                //se guarda la asignacion de la asignatura
+                $asignacionHoras=new Asignacion_horas_profesor;
+                $asignacionHoras->id_carga_horaria=$cargaHoraria->id;
+                $asignacionHoras->id_programa_educativo=$idProgramaEducativo;
+                $asignacionHoras->id_especialidad=$idEspecialidad;
+                $asignacionHoras->id_cuatrimestre=$idCuatrimestre;
+                $asignacionHoras->id_asignatura=$idAsignatura;
+                $asignacionHoras->save();
+                return back()->with('success','Los datos de asignatura se han guardado correctamente');
+            }
         }else{
-            //realiza la operación para restar las horas de la asignatura
-            $cantHorasResult=$cantHorasDis-$cantHorasSem;
-            //se actualiza la carga horaria del profesor 
-            $cargaHoraria->horasDisponibles=$cantHorasResult;
-            $cargaHoraria->save();
-            //se guarda la asignacion de la asignatura
-            $asignacionHoras=new Asignacion_horas_profesor;
-            $asignacionHoras->id_carga_horaria=$cargaHoraria->id;
-            $asignacionHoras->id_programa_educativo=$idProgramaEducativo;
-            $asignacionHoras->id_especialidad=$idEspecialidad;
-            $asignacionHoras->id_cuatrimestre=$idCuatrimestre;
-            $asignacionHoras->id_asignatura=$idAsignatura;
-            $asignacionHoras->save();
-            return back()->with('success','Los datos de asignatura se han guardado correctamente');
-            
-            
+            return back()->with('status','Debe elegir el programa educativo al que pertenece el profesor, intentelo de nuevo');
         }
+        
     }
     
     //método para eliminar las asignaturas al profesor
@@ -113,29 +123,34 @@ class Carga_horariaController extends Controller
         $cargaHoraria=Carga_horaria::where('id_profesor',$idProfesor)->first();
         //obtiene la cantidad de horas de carga horaria y lo asigna a canHorasDisponibles
         $cantHorasDis=$cargaHoraria->horasDisponibles;
-        
-        //condición si las horasDisponibles son menor que la cantHorasSem
-        if($cantHorasDis<$horasSemanales){
-            return back()->with('status','No hay horas suficientes para la asignatura');
+        //buscar el programa educativo del profesor
+        $idpro=Profesor::where('id',$idProfesor)->first();
+        $programaEdu=$idpro->id_programa_educativo;
+        //Condicion para que elija el programa educativo correcto
+        if ($idProgramaEducativo == $programaEdu) {
+            //condición si las horasDisponibles son menor que la cantHorasSem
+            if($cantHorasDis<$horasSemanales){
+                return back()->with('status','No hay horas suficientes para la asignatura');
+            }else{
+                //realiza la operación para restar las horas de la asignatura
+                $cantHorasResult=$cantHorasDis-$horasSemanales;
+                //se actualiza la carga horaria del profesor 
+                $cargaHoraria->horasDisponibles=$cantHorasResult;
+                $cargaHoraria->save();
+                //se guarda la asignacion de la asignatura
+                $actividadExtraCH=new Actividad_extra_ch;
+                $actividadExtraCH->id_carga_horaria=$cargaHoraria->id;
+                $actividadExtraCH->id_programa_educativo=$idProgramaEducativo;
+                $actividadExtraCH->id_especialidad=$idEspecialidad;
+                $actividadExtraCH->id_cuatrimestre=$idCuatrimestre;
+                $actividadExtraCH->id_actividad_extra=$idActividad;
+                $actividadExtraCH->horasSemanales=$horasSemanales;
+                $actividadExtraCH->horasCuatrimestrales=$horasCuatrimestrales;
+                $actividadExtraCH->save();
+                return back()->with('success','Los datos de asignatura se han guardado correctamente');
+            }
         }else{
-            //realiza la operación para restar las horas de la asignatura
-            $cantHorasResult=$cantHorasDis-$horasSemanales;
-            //se actualiza la carga horaria del profesor 
-            $cargaHoraria->horasDisponibles=$cantHorasResult;
-            $cargaHoraria->save();
-            //se guarda la asignacion de la asignatura
-            $actividadExtraCH=new Actividad_extra_ch;
-            $actividadExtraCH->id_carga_horaria=$cargaHoraria->id;
-            $actividadExtraCH->id_programa_educativo=$idProgramaEducativo;
-            $actividadExtraCH->id_especialidad=$idEspecialidad;
-            $actividadExtraCH->id_cuatrimestre=$idCuatrimestre;
-            $actividadExtraCH->id_actividad_extra=$idActividad;
-            $actividadExtraCH->horasSemanales=$horasSemanales;
-            $actividadExtraCH->horasCuatrimestrales=$horasCuatrimestrales;
-            $actividadExtraCH->save();
-            return back()->with('success','Los datos de asignatura se han guardado correctamente');
-            
-            
+            return back()->with('status','Debe elegir el programa educativo al que pertenece el profesor, intentelo de nuevo');
         }
     }
     
@@ -230,9 +245,9 @@ class Carga_horariaController extends Controller
         $cargaHoraria=Carga_horaria_compartido::where('id_profesor',$idProfesor)->first();
         //obtiene la cantidad de horas de carga horaria y lo asigna a canHorasDisponibles
         $cantHorasDis=$cargaHoraria->horasDisponibles;
-        
+        //Se obtiene el id del programa educativo al que pertenece el profesor
         $profesorCompartido=Profesor_compartido::where('id',$idProfesor)->first();
-        $idProgramaeducativoCom=$profesorCompartido->id_programa_educativo;
+        $idProgramaeducativoCom=$profesorCompartido->id_programa_educativo; 
         
         if($idProgramaeducativoCom != $idProgramaEducativo){
             return back()->with('status','Debe elegir el programa educativo al que pertenece el profesor, intentelo de nuevo');
@@ -430,6 +445,27 @@ class Carga_horariaController extends Controller
         
         return back()->with('success','Los datos se han eliminado correctamente');
         
+    }
+
+    //Método para agregar las horas a profesor
+    public function agregarHorasD(Request $request){
+       // try{
+        //dd("Esta aquí");
+        $carrera=Auth::user()->estado;
+        $programasEducativos=Programa_educativo::where('nombreProgramaEducativo',$carrera)->first();
+        $idCarrera=$programasEducativos->id;
+
+            $cargaHoraria = new Carga_horaria;
+            $cargaHoraria->horasTotales =$request->input('horasTotales');
+            $cargaHoraria->horasDisponibles =$request->input('horasTotales');
+            $cargaHoraria->id_profesor = $request->input('idProfesor');
+            $cargaHoraria->id_programa_educativo= $idCarrera;
+            $cargaHoraria->save();
+            
+            return back()->with('success','Los datos para las horas de profesor se han guardado correctamente');
+        //}catch(QueryException $ex){
+        //return back()->with('status','Los datos para las horas de profesor no se han guardado correctamente');
+       // }
     }
     
 }

@@ -9,7 +9,7 @@
         </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="{{route('agregarHoras')}}">
+                    <form method="post" action="{{route('agregarHorasD')}}">
                        {{ csrf_field() }}
                       <input class="form-control" type="hidden" id="idProfesor" name="idProfesor" placeholder="Escriba la clave" value="{{$profesor->id}}" >
                               <p class="text-muted">(*) El campo es obligatorio.</p>
@@ -18,13 +18,13 @@
                                        <label for="">Programa educativo:</label>
                                   </div>
                                   <div class="col-md-6">
-                                      {!! Form::select('programaEducativo',$programasEducativos,null,['id'=>'programaEducativo','class'=>'form-control mt-1','placeholder'=>'Selecciona','required']) !!}
+                                      <input type="text" class="form-control mt-1" value="{{ $profesor->programaEducativo->nombreProgramaEducativo }}" required disabled>
                                   </div>
                               </div>
-                            <div class="row">
+                            <div class="row"> 
                                   <div class="col-md-4">
                                       <label for="horasTotales">Horas totales:</label>
-                                  </div>
+                                  </div> 
                                   <div class="col-md-6">
                                       <input type="number" name="horasTotales" id="horasTotales" class="form-control mt-1" required >
                                   </div>

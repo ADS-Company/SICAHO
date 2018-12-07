@@ -25,6 +25,18 @@
                          {{ csrf_field() }}
                             <p class="text-muted">(*) El campo es obligatorio.</p>
                              <input type="hidden" id="idUsuario" name="idUsuario" value="{{$usuario->id}}" class="form-control">
+                             <div class="row align-self-end">
+                                   <div class="col-md-4 "><label for="nombre">(*)Nombre:</label></div>
+                                   <div class="col-md-6"><input type="text" id="nombre" class="form-control txtNusuario" name="nombre" placeholder="Escriba el nombre" required></div>
+                               </div>
+                               <div class="row align-self-end">
+                                   <div class="col-md-4 "><label for="apellidos">(*)Apellidos:</label></div>
+                                   <div class="col-md-3"><input type="text" id="apellidoP" class="form-control txtNusuario" name="apellidoP" placeholder="Apellido paterno" required></div><div class="col-md-3"><input type="text" id="apellidoM" class="form-control txtNusuario" name="apellidoM" placeholder="Apellido materno" required></div>
+                               </div>
+                               <div class="row align-self-end">
+                                   <div class="col-md-4 "><label for="email">(*)Correo electronico:</label></div>
+                                   <div class="col-md-6"><input type="text" id="email" class="form-control txtNusuario" name="email" placeholder="Escriba su email" required></div>
+                               </div>
                                 <div class="row ">
                                     <div class="col-md-6"> <label for="usuario">(*)Nombre de usuario:</label></div>
                                     <div class="col-md-6 align-self-end"> 
@@ -40,18 +52,19 @@
                                 <div class="col-md-6"><select class="custom-select my-1 mr-sm-2" id="rol" name="rol" value="" required>
                                 <option value="">Seleccione</option>
                                 <option value="Administrador">Administrador</option>
-                                <option value="Visitante">Visitante</option>
+                                <option value="Director">Director</option>
                               </select></div>
                             </div>
                             <div class="row">
                                <div class="col-md-6">
-                                   <div><label for="estado">(*)Estado:</label></div>
+                                   <div><label for="estado">(*)Programa educativo:</label></div>
                                </div>
                                <div class="col-md-6 ">
-                                <div><select class="custom-select my-1 mr-sm-2" id="estado" name="estado" value="" required>
+                                <div><select class="custom-select my-1 mr-sm-2" id="estado" name="estado" value="" >
                                 <option value="">Seleccione</option>
-                                <option value="Activo">Activo</option>
-                                <option value="Inactivo">Inactivo</option>
+                                @foreach($proEd as $pe)
+                                    <option value="{{ $pe->id }}">{{ $pe->nombreProgramaEducativo }}</option>
+                                @endforeach
                                 </select></div>
                                </div>
                             </div>
@@ -62,5 +75,7 @@
 
     
 </div>
+
+
 
 @endsection

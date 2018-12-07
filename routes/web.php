@@ -12,7 +12,7 @@
 */
 //ruta para obtener la vista de login
 Route::get('/', 'appController@welcome');
-//ruta para obtener la vista de bienvenido 
+//ruta para obtener la vista de bienvenido  
 Route::get('/inicio','appController@main')->middleware('auth');
 //ruta para obtener la vista de  la carga horaria
 Route::get('/cargaHoraria','appController@cargaHoraria')->middleware('auth');
@@ -149,7 +149,7 @@ Route::post('/eliminarProfesorD','ProfesorController@eliminarProfesorD')->name('
 //ruta post que recibe el id para actualizar a un profesor
 Route::post('/actualizarProfesorD','ProfesorController@actualizarProfesorD')->name('actualizarProfesorD');
 //TODOS ROUTES QUE TRAERÁ POR POST PARA CARGA HORARIA
-Route::post('/agregarHoras','Carga_horariaController@agregarHoras')->name('agregarHoras');
+Route::post('/agregarHorasD','Carga_horariaController@agregarHorasD')->name('agregarHorasD');
 //método para agregar la asinacion de materias a un profesor
 Route::post('/agregarAsignacionAsignatura','Carga_HorariaController@agregarAsignacionAsignatura')->name('agregarAsignacionAsignatura');
 //post para eliminar la asignación de horas 
@@ -181,10 +181,10 @@ Route::get('/asignaturasD','appController@asignaturasD')->middleware('auth');
 //Ruta para mostrar tabla de asignaturas
 Route::get('/asignaturasD', 'crudAsignaturas@indexD')->middleware('auth');
 //Ruta para registrar una asignatura
-Route::post('/GuardarAsignaturaD', ['uses' => 'crudAsignaturas@storeD', 'as' => 'GuardarAsignaturaD']);
+Route::post('/GuardarAsignaturaD', ['uses' => 'crudAsignaturas@guardarD', 'as' => 'GuardarAsignaturaD']);
 //Ruta para Editar Asignatura
 Route::get('/editAsignatura/{id}', 'crudAsignaturas@editAsignatura')->name('editAsignatura');
-Route::post('/modalEditAsignatura/{id}', 'crudAsignaturas@editarAsignatura')->name('modalEditAsignatura');
+Route::post('/modalEditAsignaturaD/{id}', 'crudAsignaturas@editarAsignaturaD')->name('modalEditAsignaturaD');
 //Ruta para eliminar una asignaruta
 Route::DELETE('/destroyAsignatura/{id}', 'crudAsignaturas@destroyAsignatura')->name('destroyAsignatura');
 //Ruta para mostrar tabla de asignaturas
