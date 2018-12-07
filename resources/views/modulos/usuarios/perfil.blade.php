@@ -60,18 +60,12 @@
                                    <div><label for="estado">(*)Programa educativo:</label></div>
                                </div>
                                <div class="col-md-6 ">
-<<<<<<< HEAD
                                 <div><select class="custom-select my-1 mr-sm-2" id="estado" name="estado" value="" >
                                 <option value="">Seleccione</option>
                                 @foreach($proEd as $pe)
                                     <option value="{{ $pe->id }}">{{ $pe->nombreProgramaEducativo }}</option>
                                 @endforeach
-=======
-                                <div><select class="custom-select my-1 mr-sm-2" id="estado" name="estado" value="" required>
-                                <option value="0">Seleccione</option>
-                                <option value="Tecnologías de la Información y Comunicación">Tecnologías de la Información y Comunicación</option>
-                                <option value="Inactivo">Inactivo</option>
->>>>>>> origin/master
+
                                 </select></div>
                                </div>
                             </div>
