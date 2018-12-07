@@ -46,8 +46,8 @@
                     </thead>
                     
                     <tbody>
-                        @forelse($cargaHorariaTics as $ch)
-                        @if($ch->profesoresCH->tipoProfesor=='PA')
+                        @forelse($cargasHorariasCompartidas as $ch)
+                        @if($ch->id_programa_educativo == 9 AND $ch->profesoresCH->tipoProfesor=='PA')
                         <tr>
                             <td>{{ $ch->id }}</td>
                             <td>{{ $ch->profesoresCH->nombre }} {{ $ch->profesoresCH->apellidoPaterno }} {{ $ch->profesoresCH->apellidoMaterno }}</td>

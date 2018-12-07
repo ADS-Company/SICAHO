@@ -14,7 +14,8 @@
 
                     </thead>
                     
-                    <tbody>@forelse($cargaHorariaAgricultura as $ch)
+                    <tbody>
+                       @forelse($cargaHorariaAgricultura as $ch)
                         @if($ch->profesoresCH->tipoProfesor=='PTC')
                         <tr>
                             <td>{{ $ch->id }}</td>
@@ -49,7 +50,8 @@
 
                     </thead>
                     
-                    <tbody>@forelse($cargasHorariasCompartidas as $ch)
+                    <tbody>
+                       @forelse($cargasHorariasCompartidas as $ch)
                         @if($ch->id_programa_educativo == 1 AND $ch->profesoresCH->tipoProfesor=='PA')
                         <tr>
                             <td>{{ $ch->id }}</td>
