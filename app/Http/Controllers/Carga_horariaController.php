@@ -196,7 +196,7 @@ class Carga_horariaController extends Controller
             $cargaHoraria->horasTotales =$horasTotales;
             $cargaHoraria->horasDisponibles =$horasTotales;
             $cargaHoraria->id_profesor = $idProfesor;
-            $cargaHoraria->id_programa_educativo=$idProgramaEducativo;
+            $cargaHoraria->id_programa_educativo=$idprogramaEducativo;
             $cargaHoraria->save();
             
          return back()->with('success','Los datos para las horas de profesor se han guardado correctamente');
