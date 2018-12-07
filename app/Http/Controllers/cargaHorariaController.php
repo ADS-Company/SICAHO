@@ -59,6 +59,7 @@ class cargaHorariaController extends Controller
         $agricultura=Programa_educativo::where('nombreProgramaEducativo','Agricultura Sustentable y Protegida')->first();
         $cargaHorariaAgricultura=$agricultura->cargashorarias()->paginate(10);
        
+        //obtiene todas las 
 
     	return view('modulos.cargaHoraria.main', compact('car','tics','meca','mantenimiento','industrial','alimetos','conta','negocios','gestionEnpresarial','agricultura','cargaHorariaTics','cargaHorariaMeca','cargaHorariaIndustrial','cargaHorariaMentenimiento','cargaHorariaAlimentos','cargaHorariaConta','cargaHorariaNegocios','cargaHorariaGestionE','cargaHorariaAgricultura'));
     }

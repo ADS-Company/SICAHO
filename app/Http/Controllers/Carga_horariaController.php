@@ -183,18 +183,26 @@ class Carga_horariaController extends Controller
     
       //Método para agregar las horas a profesor
     public function agregarHorasCompartido(Request $request){
-       // try{
+       try{
+           //obtiene los datos 
+           $idProfesor=$request->input('idProfesor');
+           $horasTotales=$request->input('horasTotales');
+           
+           //obtiene el profesor
+           $profesorCompartido= Profesor_compartido::where('id',$idProfesor)->first();
+           $idprogramaEducativo=$profesorCompartido->id_programa_educativo;
+           //guarda los datos en la base de datos 
             $cargaHoraria = new Carga_horaria_compartido;
-            $cargaHoraria->horasTotales =$request->input('horasTotales');
-            $cargaHoraria->horasDisponibles =$request->input('horasTotales');
-            $cargaHoraria->id_profesor = $request->input('idProfesor');
-            $cargaHoraria->id_programa_educativo= $request->get('programaEducativo');
+            $cargaHoraria->horasTotales =$horasTotales;
+            $cargaHoraria->horasDisponibles =$horasTotales;
+            $cargaHoraria->id_profesor = $idProfesor;
+            $cargaHoraria->id_programa_educativo=$idProgramaEducativo;
             $cargaHoraria->save();
             
-            return back()->with('success','Los datos para las horas de profesor se han guardado correctamente');
-        //}catch(QueryException $ex){
-        //return back()->with('status','Los datos para las horas de profesor no se han guardado correctamente');
-       // }
+         return back()->with('success','Los datos para las horas de profesor se han guardado correctamente');
+        }catch(QueryException $ex){
+        return back()->with('status','Los datos para las horas de profesor no se han guardado correctamente');
+        }
     }
     
     //método para eliminar la carga horaria de un profesor compartido
