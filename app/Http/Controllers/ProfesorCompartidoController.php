@@ -49,7 +49,7 @@ class ProfesorCompartidoController extends Controller
     public function eliminarProfesorC(Request $request){
         $id_profesor =$request->input('id');
         //Busca la carga horaria del profesor por medio de su id
-        $cargaHoraria=Carga_horaria::where('id_profesor',$id_profesor);
+        $cargaHoraria=Carga_horaria_compartido::where('id_profesor',$id_profesor);
         //encuentra al profesor por medio de su id
         $profesor = Profesor_compartido::findOrFail($id_profesor);
         //regresa true si el objeto $cargaHoraria es null

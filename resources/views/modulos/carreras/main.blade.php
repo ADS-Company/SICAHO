@@ -40,7 +40,7 @@
                     <td>{{ $car->id }}</td>  
                     <td>{{ $car->nombreEspecialidad }}</td>
                     <td>{{ $car->acronimo }}</td>
-                    <td>{{ $car->nombreProgramaEducativo }}</td>
+                    <td>{{ $car->programaEducativo->nombreProgramaEducativo }}</td>
                     <td>
                     <a data-target="#Modal-editar-{{$car->id}}" data-toggle="modal"><button class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
                     </td>
@@ -55,17 +55,6 @@
         </table>
     </div>
 
-        <div class="container">
-          <div class="row justify-content-md-center">
-            <div class="col col-lg-2">
-            </div>
-            <div class="col-md-auto">
-              {{ $carrera->links('pagination::Bootstrap-4') }}
-            </div>
-            <div class="col col-lg-2">
-            </div>
-          </div>
-        </div>
     <!--/SECCIÓN DE TABLA-->
       <!--VENTANA MODAL PARA NUEVO CARRERA-->
     <div class="modal fade" id="ModalNuevoProfesor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

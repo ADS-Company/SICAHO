@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use Response;
 use App\Carga_horaria;
+use App\Carga_horaria_compartido;
 use App\Profesor;
 use App\Actividad_extra_ch;  
 use App\Asignacion_horas_profesor;
@@ -59,8 +60,10 @@ class cargaHorariaController extends Controller
         $agricultura=Programa_educativo::where('nombreProgramaEducativo','Agricultura Sustentable y Protegida')->first();
         $cargaHorariaAgricultura=$agricultura->cargashorarias()->paginate(10);
        
-
-    	return view('modulos.cargaHoraria.main', compact('car','tics','meca','mantenimiento','industrial','alimetos','conta','negocios','gestionEnpresarial','agricultura','cargaHorariaTics','cargaHorariaMeca','cargaHorariaIndustrial','cargaHorariaMentenimiento','cargaHorariaAlimentos','cargaHorariaConta','cargaHorariaNegocios','cargaHorariaGestionE','cargaHorariaAgricultura'));
+        //obtiene todas las cargas horarias compartidas
+        $cargasHorariasCompartidas= Carga_horaria_compartido::all();
+        
+    	return view('modulos.cargaHoraria.main', compact('car','tics','meca','mantenimiento','industrial','alimetos','conta','negocios','gestionEnpresarial','agricultura','cargaHorariaTics','cargaHorariaMeca','cargaHorariaIndustrial','cargaHorariaMentenimiento','cargaHorariaAlimentos','cargaHorariaConta','cargaHorariaNegocios','cargaHorariaGestionE','cargaHorariaAgricultura','cargasHorariasCompartidas'));
     }
 
 

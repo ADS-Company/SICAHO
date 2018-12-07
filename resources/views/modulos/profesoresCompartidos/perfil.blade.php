@@ -11,7 +11,7 @@ para marcar a la opción de profesores-->
     <div id="seccionAgregarHoras">
        <div class="row">
           <div class="col-md-12"><h2>PERFIL DE PROFESOR</h2></div>
-          <div class="col-md-12"> <h2>PERTENECE A: {{$profesor->programaEducativo->nombreProgramaEducativo}}</h2></div>
+          <div class="col-md-12"> <h2 class="tituloCedido">PERTENECE A: {{$profesor->programaEducativo->nombreProgramaEducativo}}</h2></div>
        </div>
         <div class="row">
             <div class="col-md-8">
@@ -27,6 +27,7 @@ para marcar a la opción de profesores-->
                          </div>
                          @endif
                     </div>
+                    @if(Auth::user()->rol == 'Administrador')
                     @if(isset($cargaHoraria))
                      <div class="section_botones">
                      <td><button  type="button" class="btn btn-warning mb-2" data-toggle="modal" data-target="#ModalCompartirProfesor" data-id="{{$profesor->id}}" data-clave="{{$profesor->clave}}" data-nombre="{{$profesor->nombre}}" data-apellidoPaterno="{{$profesor->apellidoPaterno}}"
@@ -36,6 +37,7 @@ para marcar a la opción de profesores-->
                     <div class="section_botones">
                     <button id="btnNuevoProfesorModal" type="button" class="btn btn-info mb-2" data-toggle="modal" data-target="#ModalHorasProfesor" data-id="{{$profesor->id}}"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar horas</button>
                 </div>
+                @endif
                 @endif
             </div>
             <table class="table table-bordered" id="tablePerProfesor">
@@ -50,10 +52,11 @@ para marcar a la opción de profesores-->
                     <th scope="col">Tipo de profesor</th>
                     <th scope="col">Horas totales</th>
                     <th scope="col">Horas Disponibles</th>
-                    
+                    @if(Auth::user()->rol == 'Administrador')
                     @if(isset($cargaHoraria))
                     <th scope="col">Eliminar carga horaria</th>
                     @else
+                    @endif
                     @endif
                 </tr>
 
@@ -193,7 +196,7 @@ para marcar a la opción de profesores-->
      <div id="seccionCompartido">
      <!--SECCIÓN INFORMACION COMPARTIDO-->
      <div class="row">
-          <div class="col-md-12"> <h2>CEDIDO A: {{$compartido->programaEducativo->nombreProgramaEducativo}}</h2></div>
+          <div class="col-md-12"><h2 class="tituloCedido">CEDIDO A: {{$compartido->programaEducativo->nombreProgramaEducativo}}</h2></div>
        </div>
      </div>
      <div class="row">
@@ -243,7 +246,7 @@ para marcar a la opción de profesores-->
                     </div>
                     @if(isset($cargaHoraria))
                      <div class="section_botones">
-                    <button type="button" class="btn btn-info mb-2" data-toggle="modal" data-target="#ModalAgregarAsignaturaCompartido" data-id="{{$profesor->id}}"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar Asignatura</button>
+                    <button type="button" class="btn btn-info mb-2" data-toggle="modal" data-target="#ModalAgregarAsignaturaCompartido" data-id="{{$profesor->id}}" data-idcompartido="{{$compartido->id}}"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar Asignatura</button>
                 </div>
                 <fieldset hidden>
                   
@@ -275,7 +278,7 @@ para marcar a la opción de profesores-->
                 <td>{{$asignatura->asignatura->nombreAsignatura}}</td>
                 <td>{{$asignatura->asignatura->horasSemanales}}</td>
                 <td>{{$asignatura->asignatura->horasCuatrimestrales}}</td>
-                <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminarAsignaturaCompartido" data-id="{{$asignatura->asignatura->id}}" data-nombre="{{$asignatura->asignatura->nombreAsignatura}}"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminarAsignaturaCompartido" data-id="{{$asignatura->asignatura->id}}" data-nombre="{{$asignatura->asignatura->nombreAsignatura}}" data-idcompartido="{{$compartido->id}}"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                 </tr>
                  @endif
             @endforeach
@@ -298,7 +301,7 @@ para marcar a la opción de profesores-->
             <div class="col-md-8">
                     </div>
                     <div class="section_botones">
-                    <button type="button" class="btn btn-info mb-2" data-toggle="modal" data-target="#ModalAgregarActividadProfesor" data-id="{{$profesor->id}}"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar Actividad</button>
+                    <button type="button" class="btn btn-info mb-2" data-toggle="modal" data-target="#ModalAgregarActividadCompartido" data-id="{{$profesor->id}}" data-idcompartido="{{$compartido->id}}"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar Actividad</button>
                 </div>
             </div> 
              @if(isset($actividadesProfesor))
@@ -325,7 +328,7 @@ para marcar a la opción de profesores-->
                    <td>{{$actividad->actividadExtra->nombre}}</td>
                    <td>{{$actividad->horasSemanales}}</td>   
                    <td>{{$actividad->horasCuatrimestrales}}</td>
-                   <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminarActividadProfesor" data-id="{{$actividad->actividadExtra->id}}" data-nombre="{{$actividad->actividadExtra->nombre}}"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                   <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminarActividadCompartido" data-id="{{$actividad->actividadExtra->id}}" data-nombre="{{$actividad->actividadExtra->nombre}}" data-idcompartido="{{$compartido->id}}"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                 </tr>
                 @endif
                 @endforeach
@@ -360,6 +363,10 @@ para marcar a la opción de profesores-->
      
      <!--VENTANAS MODAL PARA AGREGAR ASIGNATURAS A UN PROFESOR-->
      @include('modulos.profesoresCompartidos.modales-asignaturasCompartido')
+    <!--/VENTANAS MODAL PARA AGREGAR ASIGNATURAS A UN PROFESOR-->
+     
+     <!--VENTANAS MODAL PARA AGREGAR ASIGNATURAS A UN PROFESOR-->
+     @include('modulos.profesoresCompartidos.modales-actividadesCompartido')
     <!--/VENTANAS MODAL PARA AGREGAR ASIGNATURAS A UN PROFESOR-->
       
       

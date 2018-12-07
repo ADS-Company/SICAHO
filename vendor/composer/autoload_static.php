@@ -388,6 +388,8 @@ class ComposerStaticInit2f779e7aef55d6b927be0eb52e750e2d
         'App\\Asignatura' => __DIR__ . '/../..' . '/app/Asignatura.php',
         'App\\Asignatura_cuatrimestre' => __DIR__ . '/../..' . '/app/Asignatura_cuatrimestre.php',
         'App\\Carga_horaria' => __DIR__ . '/../..' . '/app/Carga_horaria.php',
+        'App\\Carga_horaria_compartido' => __DIR__ . '/../..' . '/app/Carga_horaria_compartido.php',
+        'App\\Compartido' => __DIR__ . '/../..' . '/app/Compartido.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Cuatrimestre' => __DIR__ . '/../..' . '/app/Cuatrimestre.php',
         'App\\Cuatrimestre_especialidad' => __DIR__ . '/../..' . '/app/Cuatrimestre_especialidad.php',

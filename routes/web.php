@@ -17,13 +17,13 @@ Route::get('/inicio','appController@main')->middleware('auth');
 //ruta para obtener la vista de  la carga horaria
 Route::get('/cargaHoraria','appController@cargaHoraria')->middleware('auth');
 //ruta para obtener la vista de asignaturas
-Route::get('/asignaturas','appController@asignaturas')->middleware('auth');
+//Route::get('/asignaturas','appController@asignaturas')->middleware('auth');
 //ruta para obtener la vista de profesores
 Route::get('/profesores','ProfesorController@index')->middleware('auth');
 //ruta para redirigir al perfil de profesor pasano el objeto profesor
 Route::get('/profesores/{profesor}/','ProfesorController@showPerfil')->middleware('auth');
 //ruta para obtener la vista de carreras
-Route::get('/carreras','appController@carreras')->middleware('auth');
+//Route::get('/carreras','appController@carreras')->middleware('auth');
 //ruta para obtener la vista de catalogos
 Route::get('/catalogos','appController@catalogos')->middleware('auth');
 //ruta para obtener la vista de usuarios
@@ -236,6 +236,10 @@ Route::post('/eliminarActividadExtraCompartido','Carga_horariaController@elimina
 Route::post('/agregarAsignacionCompartir','Carga_horariaController@agregarAsignacionCompartir')->name('agregarAsignacionCompartir');
 //Ruta para eliminar asignatura a un profesor compartido a un PE
 Route::post('/eliminarAsignacionCompartido','Carga_horariaController@eliminarAsignacionCompartido')->name('eliminarAsignacionCompartido');
+Route::post('/agregarActividadedCompartido','Carga_horariaController@agregarActividadedCompartido')->name('agregarActividadedCompartido');
+Route::post('/eliminarActividadCompartido','Carga_horariaController@eliminarActividadCompartido')->name('eliminarActividadCompartido');
+
+
 
 
 

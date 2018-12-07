@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCargaHorariaCompartidoTable extends Migration
+class CreateActividadExtraChTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateCargaHorariaCompartidoTable extends Migration
      */
     public function up()
     {
-        Schema::create('carga_horaria_compartido', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+        Schema::create('actividad_extra_ch', function (Blueprint $table) {
+           $table->engine = 'InnoDB';
             $table->increments('id')->unsigned()->nullable();
-            $table->integer('horasTotales');
-            $table->integer('horasDisponibles');
             $table->timestamps();
+            $table->integer('horasSemanales');
+             $table->integer('horasCuatrimestrales');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateCargaHorariaCompartidoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carga_horaria_compartido');
+        Schema::dropIfExists('actividad_extra_ch');
     }
 }

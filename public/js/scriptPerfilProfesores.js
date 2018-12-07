@@ -55,11 +55,12 @@ console.log('modal cargado');
    //extrae la informacion de los data
   var id = button.data('id')
   var nombre = button.data('nombre')
-  
+  var idCompartido= button.data('idcompartido')  
   /*Actualiza el contenido y pasa los valores que recibio de la tabla todo esto lo pasa al modal*/
   var modal = $(this)
   modal.find('.modal-body #idAsignatura').val(id)
   modal.find('.modal-body #asignatura').val(nombre)
+  modal.find('.modal-body #idProfesorCompartido').val(idCompartido)
 
 });
     
@@ -78,5 +79,60 @@ console.log('modal cargado');
 
 });
         //pasa los datos de la fila al modal de actualizar  profesor
+    //pasa los datos de la fila al modal de eliminar  asignatura
+$('#ModalAgregarAsignaturaCompartido').on('show.bs.modal', function (event) {
+console.log('modal cargado');
+  var button = $(event.relatedTarget) // botón que activo el modal
+   //extrae la informacion de los data
+  var id = button.data('id')
+  var nombre = button.data('nombre')
+  var idCompartido= button.data('idcompartido')
+  
+  /*Actualiza el contenido y pasa los valores que recibio de la tabla todo esto lo pasa al modal*/
+  var modal = $(this)
+  modal.find('.modal-body #idActividad').val(id) 
+  modal.find('.modal-body #actividad').val(nombre)
+  modal.find('.modal-body #idProfesorCompartido').val(idCompartido)
 
+});
+//pasa los datos de la fila al modal de actualizar  profesor
+    
+$('#ModalEliminarActividadCompartido').on('show.bs.modal', function (event) {
+console.log('modal cargado');
+  var button = $(event.relatedTarget) // botón que activo el modal
+   //extrae la informacion de los data
+  var id = button.data('id')
+  var nombre = button.data('nombre')
+   var idCompartido= button.data('idcompartido')
+  
+  /*Actualiza el contenido y pasa los valores que recibio de la tabla todo esto lo pasa al modal*/
+  var modal = $(this)
+  modal.find('.modal-body #idActividad').val(id)
+  modal.find('.modal-body #actividad').val(nombre)
+  modal.find('.modal-body #idProfesorCompartido').val(idCompartido)
+
+});
+        //pasa los datos de la fila al modal de actualizar  profesor
+    
+                   //pasa los datos de la fila al modal de eliminar  asignatura
+$('#ModalAgregarActividadCompartido').on('show.bs.modal', function (event) {
+console.log('modal cargado');
+  var button = $(event.relatedTarget) // botón que activo el modal
+   //extrae la informacion de los data
+  var id = button.data('id')
+  var nombre = button.data('nombre')
+  var idCompartido= button.data('idcompartido')
+  
+  /*Actualiza el contenido y pasa los valores que recibio de la tabla todo esto lo pasa al modal*/
+  var modal = $(this)
+  modal.find('.modal-body #idActividad').val(id) 
+  modal.find('.modal-body #actividad').val(nombre)
+  modal.find('.modal-body #idProfesorCompartido').val(idCompartido)
+
+});
+//pasa los datos de la fila al modal de actualizar  profesor
+    
+
+    
+    
 });

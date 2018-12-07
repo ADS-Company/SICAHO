@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignKeyCargaHorariaCompartidoTable extends Migration
+class AddForeignKeysToCargaHorariaCompartidoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,7 @@ class AddForeignKeyCargaHorariaCompartidoTable extends Migration
     public function up()
     {
         Schema::table('carga_horaria_compartido', function (Blueprint $table) {
-            //
-             $table->engine = 'InnoDB';
+            $table->engine = 'InnoDB';
             /*Modifica y agrega la llave id_profesor foranea a la tabla carga_horaria*/
             $table->integer('id_profesor')->unsigned()->nullable();
             $table->foreign('id_profesor')->references('id')->on('profesor_compartido')->onDelete('cascade');      
@@ -33,7 +32,6 @@ class AddForeignKeyCargaHorariaCompartidoTable extends Migration
     public function down()
     {
         Schema::table('carga_horaria_compartido', function (Blueprint $table) {
-            //
             /*hace un drop a la llave foranea id_profesor
             si es que ya existe*/
             $table->dropForeign('id_profesor');

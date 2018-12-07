@@ -28,17 +28,6 @@
                     </tbody>
                     
                 </table>
-                <div class="container">
-                      <div class="row justify-content-md-center">
-                        <div class="col col-lg-2">
-                        </div>
-                        <div class="col-md-auto">
-                           {{ $cargaHorariaTics->links('pagination::Bootstrap-4') }}
-                        </div>
-                        <div class="col col-lg-2">
-                        </div>
-                      </div>
-                    </div>
               </div>
               <br><br>
               <div class="card-body">
@@ -57,8 +46,8 @@
                     </thead>
                     
                     <tbody>
-                        @forelse($cargaHorariaTics as $ch)
-                        @if($ch->profesoresCH->tipoProfesor=='PA')
+                        @forelse($cargasHorariasCompartidas as $ch)
+                        @if($ch->id_programa_educativo == 9 AND $ch->profesoresCH->tipoProfesor=='PA')
                         <tr>
                             <td>{{ $ch->id }}</td>
                             <td>{{ $ch->profesoresCH->nombre }} {{ $ch->profesoresCH->apellidoPaterno }} {{ $ch->profesoresCH->apellidoMaterno }}</td>
@@ -74,15 +63,4 @@
                     
                     
                 </table>
-                <div class="container">
-                      <div class="row justify-content-md-center">
-                        <div class="col col-lg-2">
-                        </div>
-                        <div class="col-md-auto">
-                           {{ $cargaHorariaTics->links('pagination::Bootstrap-4') }}
-                        </div>
-                        <div class="col col-lg-2">
-                        </div>
-                      </div>
-                    </div>
               </div>

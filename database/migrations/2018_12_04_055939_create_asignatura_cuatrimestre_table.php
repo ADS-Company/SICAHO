@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCargaHorariaTable extends Migration
+class CreateAsignaturaCuatrimestreTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateCargaHorariaTable extends Migration
      */
     public function up()
     {
-        Schema::create('carga_horaria', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+        Schema::create('asignatura_cuatrimestre', function (Blueprint $table) {
+           $table->engine = 'InnoDB';
             $table->increments('id')->unsigned()->nullable();
-            $table->integer('horasTotales');
-            $table->integer('horasDisponibles');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateCargaHorariaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cargaHoraria');
+        Schema::dropIfExists('asignatura_cuatrimestre');
     }
 }

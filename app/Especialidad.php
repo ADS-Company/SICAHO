@@ -29,7 +29,7 @@ class Especialidad extends Model
     //método que hace referencia al modelo programaEducativo
     public function programaEducativo(){
         //retorna un método de pertenencia a programa educativo 
-        return $this->belongsTo(Programa_educativo::class);
+        return $this->belongsTo(Programa_educativo::class,'id_programa_educativo');
     }
     //método que regresa una lista de los programas educativos
     public function especialidades($id){
