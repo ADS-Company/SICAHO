@@ -47,7 +47,7 @@
                     <a class="nav-link" href="{{ url('/asignaturasD') }}">Asignaturas</a>
                 </li>
                 <li class="nav-item @yield('botonNavCatalogos','')">
-                    <a class="nav-link" href="{{ url('/catalogosD') }}">Profesores compartidos</a>
+                    <a class="nav-link" href="{{ url('/profesores_compartidos') }}">Profesores compartidos</a>
                 </li>
                 <li class="nav-item @yield('botonNavUsuarios','')">
                     <a class="nav-link" href="{{ url('/usuariosD') }}"></a>

@@ -44,8 +44,10 @@ para marcar a la opción de profesores-->
                     <th scope="col">Pertenece a</th>
                     <th scope="col">Compartido con</th>
                     <th scope="col">Horas totales</th>
+                     @if(Auth::user()->rol == 'Administrador')
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
+                    @endif
                     <th scope="col">Ver perfil</th>
                 </tr>
 
@@ -71,9 +73,11 @@ para marcar a la opción de profesores-->
                    @else
                    <td>0</td>
                    @endif
+                   @if(Auth::user()->rol == 'Administrador')
                 <td><button type="button" class="btn btn-warning btnActualizarProfesor" data-toggle="modal" data-target="#ModalActualizarProfesor" data-id="{{$profesor->id}}" data-clave="{{$profesor->clave}}" data-nombre="{{$profesor->nombre}}" data-apellidopaterno="{{$profesor->apellidoPaterno}}" data-apellidomaterno="{{$profesor->apellidoMaterno}}" data-tipoprofesor="{{$profesor->tipoProfesor}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
                 <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminarProfesor" data-id="{{$profesor->id}}" data-clave="{{$profesor->clave}}" data-nombre="{{$profesor->nombre}}" data-apellidoPaterno="{{$profesor->apellidoPaterno}}"
                  data-apellidoMaterno="{{$profesor->apellidoMaterno}}"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                 @endif
                 <td><a class=" btn btn-info btn-sm textVerperfil" href="/profesores_compartidos/{{$profesor->id}}" ><i class="fa fa-search-plus" aria-hidden="true"></i></a></td>
                </tr>
                @endforeach
