@@ -27,6 +27,7 @@ para marcar a la opción de profesores-->
                          </div>
                          @endif
                     </div>
+                    @if(Auth::user()->rol == 'Administrador')
                     @if(isset($cargaHoraria))
                      <div class="section_botones">
                      <td><button  type="button" class="btn btn-warning mb-2" data-toggle="modal" data-target="#ModalCompartirProfesor" data-id="{{$profesor->id}}" data-clave="{{$profesor->clave}}" data-nombre="{{$profesor->nombre}}" data-apellidoPaterno="{{$profesor->apellidoPaterno}}"
@@ -36,6 +37,7 @@ para marcar a la opción de profesores-->
                     <div class="section_botones">
                     <button id="btnNuevoProfesorModal" type="button" class="btn btn-info mb-2" data-toggle="modal" data-target="#ModalHorasProfesor" data-id="{{$profesor->id}}"><i class="fa fa-plus-circle" aria-hidden="true"></i>Agregar horas</button>
                 </div>
+                @endif
                 @endif
             </div>
             <table class="table table-bordered" id="tablePerProfesor">
@@ -50,10 +52,11 @@ para marcar a la opción de profesores-->
                     <th scope="col">Tipo de profesor</th>
                     <th scope="col">Horas totales</th>
                     <th scope="col">Horas Disponibles</th>
-                    
+                    @if(Auth::user()->rol == 'Administrador')
                     @if(isset($cargaHoraria))
                     <th scope="col">Eliminar carga horaria</th>
                     @else
+                    @endif
                     @endif
                 </tr>
 

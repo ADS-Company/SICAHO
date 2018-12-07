@@ -42,8 +42,6 @@ para marcar a la opción de profesores-->
                     <th scope="col">Apellido materno</th>
                     <th scope="col">Tipo de profesor</th>
                     <th scope="col">Pertenece a</th>
-                    <th scope="col">Compartido con</th>
-                    <th scope="col">Horas totales</th>
                      @if(Auth::user()->rol == 'Administrador')
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
@@ -63,16 +61,6 @@ para marcar a la opción de profesores-->
                 <td>{{$profesor->apellidoMaterno}}</td>
                 <td>{{$profesor->tipoProfesor}}</td>
                 <td>{{$profesor->programaEducativo->nombreProgramaEducativo}}</td>
-                 @if(isset($cargaHoraria))
-                   <td>{{$cargaHoraria->horasTotales}}</td>
-                   @else
-                   <td>0</td>                
-                   @endif
-                   @if(isset($cargaHoraria))
-                   <td>{{$cargaHoraria->horasDisponibles}}</td>
-                   @else
-                   <td>0</td>
-                   @endif
                    @if(Auth::user()->rol == 'Administrador')
                 <td><button type="button" class="btn btn-warning btnActualizarProfesor" data-toggle="modal" data-target="#ModalActualizarProfesor" data-id="{{$profesor->id}}" data-clave="{{$profesor->clave}}" data-nombre="{{$profesor->nombre}}" data-apellidopaterno="{{$profesor->apellidoPaterno}}" data-apellidomaterno="{{$profesor->apellidoMaterno}}" data-tipoprofesor="{{$profesor->tipoProfesor}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
                 <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminarProfesor" data-id="{{$profesor->id}}" data-clave="{{$profesor->clave}}" data-nombre="{{$profesor->nombre}}" data-apellidoPaterno="{{$profesor->apellidoPaterno}}"
