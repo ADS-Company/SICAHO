@@ -33,12 +33,56 @@ class UsuarioController extends Controller
   //Método para agregar a un profesor a la base de datos 
     public function nuevoUsuario(Request $request)
     {
+      //Obtener el id del programa educativo que selecione
       $Idcarrera=$request->get('estado');
       $consulta=Programa_educativo::where('id',$Idcarrera)->first();
+        if(is_null($consulta)){
+            $estado='Activo';
+            //try que realiza todo el código de guardado
+               try{
+                //crea una instancia del modelo para poder acceder a la base de datos 
+                $password = $request->input('password');
+                $length= strlen($password);
+                   if($length<8){
+                   return back()->with('status','El tamaño minimo de su contraseña debe de ser de 8 caracteres');
+                   }else{
+                $encriptado = encrypt($password);
+
+                //recibe los request ubicados en el formulario 
+                $usuario= new User;
+                $usuario->nombre=$request->input('nombre');
+                $apellidoP=$request->input('apellidoP');
+                $apellidoM=$request->input('apellidoM'); 
+                $usuario->apellidos=$apellidoP." ".$apellidoM;
+                $usuario->email=$request->input('email');
+                $usuario->username=$request->input('usuario');
+
+                 $usuario->password=$encriptado;
+                // $usuario->passencrpt=password_hash($password, PASSWORD_DEFAULt);
+                $usuario->rol=$request->get('rol');
+                $rol = $request->get('rol');
+                    if ($rol=="Director") {
+                      $idProEdu = $request->get('estado');
+                      $proEdu=Programa_educativo::all()->where('id',$idProEdu)->first();
+                      $carrera=$proEdu->nombreProgramaEducativo;
+                      $usuario->estado  = $proEdu->nombreProgramaEducativo;
+                    }else{
+                      $usuario->estado  = $estado;
+                    }
+                //dd($usuario);
+                $usuario->save();
+                return back()->with('success','Los datos han sido guardados correctamente');
+                   }
+                }catch(QueryException $ex)
+                {
+                    return back()->with('status','Algunos datos no se han ingresado correctamente por favor intente de nuevo');
+                } 
+        }else{
       $nombbreCarrera=$consulta->nombreProgramaEducativo;
       $nuevo=User::where('estado',$nombbreCarrera)->first();
+            //dd($nuevo);
       //dd($nombbreCarrera);
-      if (is_null($consulta)) {
+            if (is_null($nuevo)) {
         //try que realiza todo el código de guardado
        try{
         //crea una instancia del modelo para poder acceder a la base de datos 
@@ -53,7 +97,7 @@ class UsuarioController extends Controller
         $usuario= new User;
         $usuario->nombre=$request->input('nombre');
         $apellidoP=$request->input('apellidoP');
-        $apellidoM=$request->input('apellidoM');
+        $apellidoM=$request->input('apellidoM'); 
         $usuario->apellidos=$apellidoP." ".$apellidoM;
         $usuario->email=$request->input('email');
         $usuario->username=$request->input('usuario');
@@ -68,7 +112,7 @@ class UsuarioController extends Controller
               $carrera=$proEdu->nombreProgramaEducativo;
               $usuario->estado  = $proEdu->nombreProgramaEducativo;
             }else{
-              $usuario->estado  = 'Activo';
+              $usuario->estado  = $estado;
             }
         //dd($usuario);
         $usuario->save();
@@ -81,6 +125,8 @@ class UsuarioController extends Controller
       }else{
         return back()->with('status','Ya existe un director para ese programa educativo');
       }
+        }
+      
     }
 
     //método para eliminar a un usuario
@@ -133,11 +179,13 @@ class UsuarioController extends Controller
 
  public function showPerfil(User $usuario){
       $proEd=Programa_educativo::all();
+       $nombre = $usuario->nombre;
        $password = $usuario->password;
        $desencriptado= decrypt($password);
        //dd($desencriptado);
 
        return view('modulos.usuarios.perfil',[
+        'nombre'=>$nombre,
         'usuario'=>$usuario,
         'desencriptado'=>$desencriptado,
         'proEd'=>$proEd,
